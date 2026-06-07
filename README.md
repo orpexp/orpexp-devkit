@@ -27,7 +27,7 @@ A complete Claude Code configuration framework for software product development 
 ### 1. Clone the repo
 
 ```bash
-git clone <this-repo-url> claude-framework
+git clone git@github.com:orpexp/orpexp-devkit.git claude-framework
 cd claude-framework
 ```
 

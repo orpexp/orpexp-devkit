@@ -7,7 +7,7 @@ The fastest way to start building with Claude Code. Install once, use on every p
 ## 1. Install (one-time, ~2 min)
 
 ```bash
-git clone <this-repo-url> ~/claude-framework
+git clone git@github.com:orpexp/orpexp-devkit.git ~/claude-framework
 claude plugin add ~/claude-framework
 bash ~/claude-framework/scripts/install-external-skills.sh
 # Manual fallback: cp -r ~/claude-framework/skills/* ~/.claude/skills/

@@ -6,7 +6,7 @@
     "name": "Victor Orrego",
     "url": "https://orpexp.com"
   },
-  "repository": "<your-github-url>",
+  "repository": "https://github.com/orpexp/orpexp-devkit",
   "license": "MIT",
   "keywords": ["product-development", "skills", "workflow", "architect", "product-owner"]
 }

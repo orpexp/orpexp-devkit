@@ -1,0 +1,9 @@
+{
+  "effortLevel": "high",
+  "defaultMode": "acceptEdits",
+  "theme": "dark",
+  "autoUpdates": true,
+  "notifications": {
+    "enabled": true
+  }
+}

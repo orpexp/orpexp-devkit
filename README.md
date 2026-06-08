@@ -26,8 +26,17 @@ A complete Claude Code configuration framework for software product development 
 
 ### 1. Install the plugin
 
+This repo is **private** — authenticate with GitHub first so Claude Code can access it:
+
 ```bash
-# Add the orpexp marketplace (one-time)
+# One-time GitHub auth (grant orpexp org access when prompted)
+gh auth login
+```
+
+Then register the marketplace and install. The `marketplace add` step is a one-time setup that tells Claude Code where to find `orpexp-devkit`; without it, `plugin install` wouldn't know which source to pull from.
+
+```bash
+# Register the orpexp plugin source (one-time)
 claude plugin marketplace add orpexp/orpexp-devkit
 
 # Install the plugin — auto-loads all 11 skills

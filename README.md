@@ -153,7 +153,8 @@ my-product/
 ├── .ai/                    ← how to work in this repo
 │   ├── AGENTS.md           ←   canonical agent context (behavioral rules, reading order)
 │   ├── conventions.md      ←   the documents/ system rules
-│   └── platform-layout.md ←   the platform/ code architecture + import rules
+│   ├── platform-layout.md ←   the platform/ code architecture + import rules
+│   └── playbook.md         ←   skills + workflow quick-reference (which skill for which task)
 ├── documents/              ← the knowledge base CONTENT (vision, scope, architecture, etc.)
 │   ├── README.md           ←   index: "I need X → read Y" routing table
 │   ├── inputs/             ←   ⭐ stakeholder input — READ-ONLY to agents

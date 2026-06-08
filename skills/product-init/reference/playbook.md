@@ -1,7 +1,10 @@
 # {{PRODUCT_NAME}} — Development Playbook
 
-Quick reference: which Claude Code skill to use at each stage of development.
-Use this when you or a teammate asks "what should I run for X?"
+This project was set up with the **orpexp-devkit** Claude Code plugin, which gives your agent a set
+of role-based and workflow skills covering the full product lifecycle. If you're reading this, the
+plugin is already installed — just run the skill you need inside Claude Code.
+
+> **Ask your agent:** "What skill should I use to [task]?" — it will consult this file and guide you.
 
 ---
 

@@ -8,6 +8,19 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.3.0] — 2026-06-07
+
+### Added
+- `skills/product-init/reference/playbook.md` — new template; every project scaffolded by `/product-init` now gets `.ai/playbook.md`, a skills + workflow quick-reference covering all bundled and Anthropic external skills, with plugin context preamble
+
+### Changed
+- `skills/product-init/SKILL.md` — reads and generates `.ai/playbook.md`; both tree diagrams updated
+- `skills/product-init/reference/agents-md.md` — Reading order now points to `playbook.md`
+- `.claude-plugin/plugin.json` — version corrected to 1.2.0; skill count corrected to 12
+- `README.md` — Project Structure `.ai/` block updated to include `playbook.md`
+
+---
+
 ## [1.2.0] — 2026-06-07
 
 ### Added

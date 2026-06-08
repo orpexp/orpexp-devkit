@@ -82,7 +82,23 @@ claude plugin marketplace list
 
 ---
 
-## 3. Apply Global CLAUDE.md (Optional)
+## When do you need to clone the repo?
+
+**Cloning is optional.** The plugin install, project scaffolding (`/product-init`), and external skills (`/setup-skills`) all work without it.
+
+You only need to clone if you want to:
+- Copy `global/CLAUDE.md` into `~/.claude/CLAUDE.md` (global Claude instructions)
+- Copy or review `global/settings.json` (recommended settings)
+- Contribute new skills or edits back to the framework
+
+```bash
+# Only when needed for one of the above:
+git clone git@github.com:orpexp/orpexp-devkit.git ~/orpexp-devkit
+```
+
+---
+
+## 2. Apply Global CLAUDE.md (Optional)
 
 The `global/CLAUDE.md` file sets default behavior for all your projects. Review it before applying:
 
@@ -100,7 +116,7 @@ If you already have a `~/.claude/CLAUDE.md`, merge manually rather than overwrit
 
 ---
 
-## 4. Apply Recommended Settings (Optional)
+## 3. Apply Recommended Settings (Optional)
 
 Review and merge `global/settings.json`:
 
@@ -122,72 +138,37 @@ cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
 
 ---
 
-## 5. Install External Skills from Anthropic
+## 4. Install External Skills from Anthropic
 
-These official skills from Anthropic's GitHub add powerful capabilities. Use the included script to install all five at once:
+These 5 official Anthropic skills add UI design, testing, MCP server building, and code simplification. No clone needed — the `/setup-skills` skill handles everything:
 
-```bash
-bash ~/orpexp-devkit/scripts/install-external-skills.sh
+```
+Open Claude Code and run:  /setup-skills
 ```
 
-This installs: `frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator` (from `anthropics/skills`) and `simplify` (from `anthropics/claude-code`).
-
-**Requirements:** `git` must be installed. `gh` (GitHub CLI) is used if available; otherwise falls back to plain `git clone`.
-
-**Manual install (if the script doesn't work):**
-
-```bash
-# From anthropics/skills
-gh repo clone anthropics/skills /tmp/anthropic-skills
-cp -r /tmp/anthropic-skills/frontend-design ~/.claude/skills/
-cp -r /tmp/anthropic-skills/webapp-testing ~/.claude/skills/
-cp -r /tmp/anthropic-skills/mcp-builder ~/.claude/skills/
-cp -r /tmp/anthropic-skills/skill-creator ~/.claude/skills/
-rm -rf /tmp/anthropic-skills
-
-# simplify — from anthropics/claude-code
-gh repo clone anthropics/claude-code /tmp/claude-code-repo
-cp -r /tmp/claude-code-repo/.claude/skills/simplify ~/.claude/skills/
-rm -rf /tmp/claude-code-repo
-```
-
-> **Note:** Verify folder names against the official Anthropic GitHub repos if the install fails — folder paths may change as skills are updated.
+The skill tries the plugin marketplace first and falls back to `git clone` automatically. It installs: `frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator`, and `simplify`.
 
 ---
 
-## 6. Add to a Project
+## 5. Start a New Project
 
-For a new project, use the full project template (preferred):
-
-```bash
-cp -r ~/orpexp-devkit/project-template/. ./my-product/
-cd my-product
-```
-
-Or for an existing project, copy just the `.ai/` context folder and the root pointer:
+No template to copy — `/product-init` generates the full project structure from your idea notes:
 
 ```bash
-cd my-project
-cp -r ~/orpexp-devkit/project-template/.ai ./.ai
-cp ~/orpexp-devkit/project-template/CLAUDE.md ./CLAUDE.md
+mkdir my-product && cd my-product
+claude
 ```
 
-Customize `.ai/AGENTS.md` with your project details (name, pitch, industry, stage):
+Inside Claude Code:
 
-```bash
-code .ai/AGENTS.md   # or vim, nano, etc.
+```
+/product-init
+"Here are my idea notes: [paste notes]"
 ```
 
-> **Note on CLAUDE.md:** Claude Code auto-loads `CLAUDE.md` at the **project root only**. The root
-> `CLAUDE.md` in this framework is a 3-line file that `@`-imports `.ai/AGENTS.md` — keep it as-is.
-> Put all substantive guidance in `.ai/AGENTS.md`, not in the root `CLAUDE.md`.
+This scaffolds the complete tree (`CLAUDE.md`, `.ai/`, `documents/`, `platform/`) and extracts your notes into structured knowledge-base docs. Everything is generated — no repo clone required.
 
-Add both to git so the whole team benefits:
-
-```bash
-git add CLAUDE.md .ai/
-git commit -m "add AI context and agent configuration"
-```
+For an **existing project**, run `/product-init` from inside it — the skill detects that `documents/inputs/STAKEHOLDER-NOTES.md` doesn't exist and runs in INIT mode, adding `.ai/` and `documents/` without touching existing files.
 
 ---
 

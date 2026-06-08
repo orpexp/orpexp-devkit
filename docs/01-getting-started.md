@@ -84,12 +84,7 @@ If your project doesn't have a `CLAUDE.md` yet:
 
 Claude will ask about your project and create a starter `CLAUDE.md`. Edit it to add your actual stack and conventions.
 
-Alternatively, copy the project template:
-
-```bash
-cp -r ~/claude-framework/project-template/.ai ./.ai
-# Edit .ai/CLAUDE.md with your project details
-```
+Alternatively, run `/product-init` — it generates the full project structure (`.ai/`, `documents/`, `platform/`) from your idea notes without any file copying.
 
 ### Step 3: Orient Claude to your codebase
 

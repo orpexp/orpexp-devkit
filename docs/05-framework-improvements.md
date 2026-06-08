@@ -5,7 +5,7 @@ A prioritized review of this framework with concrete, actionable improvements. E
 a roadmap for making it more robust, more native to Claude Code, and easier to share across a team.
 
 > **Already shipped:**
-> - `platform/` structure: `core/ui-components` added, `core/shared` → `core/server`, router placement rules documented. See [`project-template/.ai/platform-layout.md`](../project-template/.ai/platform-layout.md).
+> - `platform/` structure: `core/ui-components` added, `core/shared` → `core/server`, router placement rules documented. See [`skills/product-init/reference/platform-layout.md`](../skills/product-init/reference/platform-layout.md).
 > - **Plugin packaging (item 1 below):** `skills/` is at the repo root; `.claude-plugin/plugin.json` is in place; install with `claude plugin add ~/claude-framework`.
 
 ---

@@ -8,6 +8,25 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.2.0] — 2026-06-07
+
+### Added
+- `skills/setup-skills/SKILL.md` — new `/setup-skills` skill installs Anthropic's 5 external skills (marketplace-first, git-clone fallback); replaces the bash script
+- `skills/product-init/reference/agents-md.md` — AGENTS.md template; makes `/product-init` fully self-contained
+- `skills/product-init/reference/platform-readme.md` — platform/README.md template; makes `/product-init` fully self-contained
+
+### Changed
+- `skills/product-init/SKILL.md` — Step 5 now has explicit content for all generated files (CLAUDE.md, .ai/AGENTS.md, platform/README.md); reads two new reference templates
+- `INSTALL.md` — cloning the repo is now documented as optional; §4 and §5 rewritten to use `/setup-skills` and `/product-init`; "When do you need to clone?" section added
+- `QUICK-START.md` — no clone in Step 1; `/setup-skills` replaces the bash script line
+- `README.md` — removed `project-template/` and `scripts/` from repo table; added `/setup-skills` to Skills Reference; updated description and project structure note
+
+### Removed
+- `project-template/` — redundant; `/product-init` generates the full structure from its reference files
+- `scripts/install-external-skills.sh` and `scripts/` — replaced by `/setup-skills` skill
+
+---
+
 ## [1.1.0] — 2026-06-07
 
 ### Added

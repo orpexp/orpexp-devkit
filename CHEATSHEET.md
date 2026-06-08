@@ -196,10 +196,10 @@ After INIT, the recommended next steps are surfaced automatically. Usually:
 ### External Skills (from Anthropic — install once)
 
 These are official skills maintained by Anthropic, not bundled in this framework.
-Install them all at once:
+Install them all at once — no clone needed:
 
-```bash
-bash <path-to-claude-framework>/scripts/install-external-skills.sh
+```
+/setup-skills
 ```
 
 | Skill | Source | When to use |

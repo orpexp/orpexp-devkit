@@ -20,9 +20,11 @@ This skill scaffolds **docs only** (no application code skeleton). It is the gen
 project it creates is a self-contained instance. The tech stack is a deliberate gap — it is left as
 an open question to be decided via `/architect` once the product is defined.
 
-Read `reference/conventions.md` (the full system) and `reference/platform-layout.md` (the code
-layout) before scaffolding. They are also copied into every project as `.ai/conventions.md` and
-`.ai/platform-layout.md`.
+Read all four reference files before scaffolding:
+- `reference/conventions.md` — the docs system (also copied to `.ai/conventions.md`)
+- `reference/platform-layout.md` — code layout rules (also copied to `.ai/platform-layout.md`)
+- `reference/agents-md.md` — template for `.ai/AGENTS.md`
+- `reference/platform-readme.md` — template for `platform/README.md`
 
 **The shape of a generated project:**
 **`.ai/` = how to work in this repo; `documents/` = the knowledge-base content; `platform/` = code.**
@@ -121,10 +123,32 @@ last_updated: {{DATE}}
 
 **From now on `documents/inputs/` is read-only to you.** You derive *from* it, never edit it.
 
-### Step 5: Copy the reference files into `.ai/`
+### Step 5: Write the scaffolded files from reference templates
 
-- `reference/conventions.md` → `.ai/conventions.md`
-- `reference/platform-layout.md` → `.ai/platform-layout.md`
+**`CLAUDE.md`** — write this exact content:
+
+```markdown
+# CLAUDE.md
+
+The canonical, tool-agnostic working context for this repo lives in
+[`.ai/AGENTS.md`](.ai/AGENTS.md). The line below imports it so Claude Code loads it automatically —
+keep substantive guidance there, not here.
+
+@.ai/AGENTS.md
+```
+
+**`.ai/AGENTS.md`** — use `reference/agents-md.md` as the template. Replace every `{{PLACEHOLDER}}` token with the values confirmed in Step 2:
+- `{{PRODUCT_NAME}}` → the product name
+- `{{ONE_LINE_PITCH}}` → the one-line pitch
+- `{{INDUSTRY}}` → the industry / domain
+- `{{STAGE}}` → Idea / MVP / Beta / Live
+- `{{TARGET_USER}}` → extracted from the notes, or `> [OPEN QUESTION: who is the target user?]`
+
+**`.ai/conventions.md`** — copy `reference/conventions.md` verbatim.
+
+**`.ai/platform-layout.md`** — copy `reference/platform-layout.md` verbatim.
+
+**`platform/README.md`** — use `reference/platform-readme.md` as the template. Replace `{{PRODUCT_NAME}}` with the product name.
 
 ### Step 6: Populate each core derived doc
 

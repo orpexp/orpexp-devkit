@@ -9,18 +9,22 @@ The fastest way to start building with Claude Code. Install once, use on every p
 > **Private repo:** You need `gh` (GitHub CLI) authenticated with `orpexp` org access before running these commands. See [INSTALL.md](INSTALL.md) § 0 if you haven't done this yet.
 
 ```bash
-# Add the orpexp marketplace
+# Register the orpexp plugin source (one-time)
 claude plugin marketplace add orpexp/orpexp-devkit
 
-# Install the plugin
+# Install the plugin — auto-loads all skills
 claude plugin install orpexp-devkit
-
-# Optional: install Anthropic's official external skills
-git clone git@github.com:orpexp/orpexp-devkit.git ~/orpexp-devkit
-bash ~/orpexp-devkit/scripts/install-external-skills.sh
 ```
 
-Verify: open Claude Code and run `/help` — you should see all skills listed.
+Then open Claude Code and run:
+
+```
+/setup-skills
+```
+
+This installs Anthropic's 5 official external skills (`frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator`, `simplify`). No repo clone needed.
+
+Verify with `/help` — you should see all skills listed.
 
 ---
 
@@ -38,7 +42,7 @@ Inside Claude Code, paste your raw idea notes and run:
 "Here are my idea notes: [paste your notes]"
 ```
 
-This creates the full project structure (`documents/`, `.ai/`, `platform/`) and extracts your notes into structured knowledge-base documents. No stack decisions yet — that comes next.
+This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `platform/`) and extracts your notes into structured knowledge-base docs. No template to copy — the skill builds everything.
 
 ---
 
@@ -69,5 +73,5 @@ This creates the full project structure (`documents/`, `.ai/`, `platform/`) and 
 | Resource | Purpose |
 |---|---|
 | [CHEATSHEET.md](CHEATSHEET.md) | Full command reference, every stage |
-| [INSTALL.md](INSTALL.md) | Team onboarding, external skills, factory reset |
+| [INSTALL.md](INSTALL.md) | Team onboarding, global config, factory reset |
 | [docs/](docs/) | Deep-dive guides (workflow, agents, architecture) |

@@ -1,6 +1,6 @@
-# Claude Code Cheatsheet
+# Claude Code Guide
 
-Quick reference for Claude Code commands, shortcuts, and workflows across every stage of product development.
+Reference for Claude Code commands, shortcuts, and workflows across every stage of product development.
 
 ---
 

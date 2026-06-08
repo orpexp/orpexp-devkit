@@ -8,11 +8,8 @@ A complete Claude Code plugin for software product development teams. Install on
 
 | Path | Purpose |
 |---|---|
-| [`QUICK-START.md`](QUICK-START.md) | Plug-and-play 5-minute setup guide |
-| [`CHEATSHEET.md`](CHEATSHEET.md) | Claude Code commands by development stage |
-| [`INSTALL.md`](INSTALL.md) | How to install, sync, and factory-reset your Claude setup |
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and release notes |
-| [`docs/`](docs/) | Deep-dive guides (workflow, stages, agents) |
+| [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
 | [`skills/`](skills/) | All 12 bundled skills (loaded automatically via the plugin) |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
@@ -20,8 +17,6 @@ A complete Claude Code plugin for software product development teams. Install on
 ---
 
 ## Quick Start
-
-> **New here?** See [**QUICK-START.md**](QUICK-START.md) for the plug-and-play 5-minute setup.
 
 ### 1. Install the plugin
 
@@ -41,6 +36,8 @@ claude plugin marketplace add orpexp/orpexp-devkit
 # Install the plugin — auto-loads all 12 skills
 claude plugin install orpexp-devkit
 ```
+
+Verify: open Claude Code and run `/help` — all skills should appear in the list.
 
 ### 2. Install external skills (optional)
 
@@ -76,6 +73,14 @@ This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `p
 /build-plan      "Generate the implementation plan for MVP"
 /frontend-dev    "Build the [component]"
 /backend-dev     "Implement the [API endpoint]"
+```
+
+### 5. Review & Ship
+
+```
+/webapp-testing  "Write tests for [feature]"
+/code-review     (built-in — review current branch changes)
+/scrum-master    "Plan this sprint" | "Write release notes"
 ```
 
 ---
@@ -186,11 +191,13 @@ my-product/
 
 ## Guides
 
+- [Claude Code Guide](docs/00-claude-code-guide.md) — CLI commands, keyboard shortcuts, permission modes, tips
 - [Getting Started](docs/01-getting-started.md) — Setup, first run, core concepts
 - [Project Workflow](docs/02-project-workflow.md) — End-to-end product development with Claude Code
 - [Commands by Stage](docs/03-commands-by-stage.md) — What to run at each phase
 - [Agents Guide](docs/04-agents-guide.md) — How to use role-based agents effectively
 - [Framework Improvements](docs/05-framework-improvements.md) — Review & roadmap for evolving this framework
+- [Install & Maintenance](docs/06-install-and-maintenance.md) — Team onboarding, global config, factory reset
 
 ---
 

@@ -1,6 +1,6 @@
-# Installation Guide
+# Install & Maintenance Guide
 
-How to install the Claude Code Framework globally, sync it to a project, and reset your Claude config when needed.
+Team onboarding, global config sync, and factory reset procedures for the orpexp-devkit plugin.
 
 ---
 

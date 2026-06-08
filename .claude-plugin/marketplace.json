@@ -1,0 +1,28 @@
+{
+  "$schema": "https://code.claude.com/schema/marketplace.json",
+  "name": "orpexp",
+  "owner": {
+    "name": "Victor Orrego",
+    "email": "orrego.vh@gmail.com"
+  },
+  "description": "orpexp product development tools for Claude Code",
+  "plugins": [
+    {
+      "name": "orpexp-devkit",
+      "source": {
+        "source": "github",
+        "repo": "orpexp/orpexp-devkit",
+        "ref": "main"
+      },
+      "description": "Product development framework for Claude Code — 11 skills covering the full product lifecycle from idea to ship.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Victor Orrego"
+      },
+      "repository": "https://github.com/orpexp/orpexp-devkit",
+      "license": "MIT",
+      "keywords": ["product-development", "skills", "workflow", "architect", "product-owner"],
+      "defaultEnabled": true
+    }
+  ]
+}

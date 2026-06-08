@@ -20,11 +20,12 @@ This skill scaffolds **docs only** (no application code skeleton). It is the gen
 project it creates is a self-contained instance. The tech stack is a deliberate gap — it is left as
 an open question to be decided via `/architect` once the product is defined.
 
-Read all four reference files before scaffolding:
+Read all five reference files before scaffolding:
 - `reference/conventions.md` — the docs system (also copied to `.ai/conventions.md`)
 - `reference/platform-layout.md` — code layout rules (also copied to `.ai/platform-layout.md`)
 - `reference/agents-md.md` — template for `.ai/AGENTS.md`
 - `reference/platform-readme.md` — template for `platform/README.md`
+- `reference/playbook.md` — template for `.ai/playbook.md`
 
 **The shape of a generated project:**
 **`.ai/` = how to work in this repo; `documents/` = the knowledge-base content; `platform/` = code.**
@@ -68,7 +69,8 @@ Create this tree (empty files where noted, README only for platform):
 ├── .ai/
 │   ├── AGENTS.md                       ← canonical agent context (from template)
 │   ├── conventions.md                  ← copied from reference/conventions.md
-│   └── platform-layout.md             ← copied from reference/platform-layout.md
+│   ├── platform-layout.md             ← copied from reference/platform-layout.md
+│   └── playbook.md                     ← skills + workflow quick-reference (from template)
 ├── documents/
 │   ├── README.md                       ← knowledge-base index (seed during Step 6)
 │   ├── inputs/
@@ -147,6 +149,8 @@ keep substantive guidance there, not here.
 **`.ai/conventions.md`** — copy `reference/conventions.md` verbatim.
 
 **`.ai/platform-layout.md`** — copy `reference/platform-layout.md` verbatim.
+
+**`.ai/playbook.md`** — use `reference/playbook.md` as the template. Replace `{{PRODUCT_NAME}}` with the product name.
 
 **`platform/README.md`** — use `reference/platform-readme.md` as the template. Replace `{{PRODUCT_NAME}}` with the product name.
 
@@ -321,7 +325,8 @@ Plan the first sprint from the build plan."
 ├── .ai/
 │   ├── AGENTS.md                           ← canonical agent context
 │   ├── conventions.md                      ← the docs-system rules
-│   └── platform-layout.md                 ← the platform/ code layout
+│   ├── platform-layout.md                 ← the platform/ code layout
+│   └── playbook.md                         ← skills + workflow quick-reference
 ├── documents/
 │   ├── README.md                           ← index/manifest + routing table
 │   ├── inputs/

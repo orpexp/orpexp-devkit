@@ -35,6 +35,9 @@ Stop once you have enough context for the task at hand:
 The rules behind the layout: [`conventions.md`](conventions.md) (docs system) and
 [`platform-layout.md`](platform-layout.md) (code under `platform/`).
 
+When asked "what skill should I use for X?", consult [`playbook.md`](playbook.md) — the full skills
+and workflow quick-reference for this project.
+
 ---
 
 ## 3. Behavioral rules

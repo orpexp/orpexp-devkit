@@ -4,6 +4,17 @@ Team onboarding, global config sync, and factory reset procedures for the orpexp
 
 ---
 
+## Release process (maintainers only)
+
+Before every push with user-facing changes:
+1. Bump `"version"` in `.claude-plugin/plugin.json`
+2. Bump `"version"` (and `"description"` if skill count changed) in `.claude-plugin/marketplace.json`
+3. Add a `## [x.y.z] — YYYY-MM-DD` entry to `CHANGELOG.md`
+
+Teammates then pick it up with `claude plugin update orpexp-devkit` inside Claude Code.
+
+---
+
 ## Prerequisites
 
 - Claude Code CLI installed: `npm install -g @anthropic-ai/claude-code`

@@ -205,10 +205,18 @@ my-product/
 
 This repository is the single source of truth for your team's Claude Code configuration. The plugin installs from GitHub — no file copying needed.
 
+**Keeping up to date:**
+When a new version is pushed, teammates run one command inside Claude Code:
+```
+claude plugin update orpexp-devkit
+```
+Changes take effect immediately — no restart needed.
+
 **Adding a new skill for your team:**
 1. Create `skills/my-skill/SKILL.md` following the pattern in existing skills
 2. Run `/skill-creator` inside Claude Code for guided skill authoring
-3. Commit and push — teammates update with `claude plugin update orpexp-devkit`
+3. Bump the version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+4. Commit and push — teammates pick it up with `claude plugin update orpexp-devkit`
 
 **Project-level customization:**
 Each project's `CLAUDE.md` at the project root is auto-loaded by Claude Code. Keep all substantive guidance in `.ai/AGENTS.md` and pull it in via `@.ai/AGENTS.md` inside the root `CLAUDE.md` — that is how `.ai/` content reaches Claude.

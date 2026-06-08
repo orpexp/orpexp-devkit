@@ -7,10 +7,15 @@ The fastest way to start building with Claude Code. Install once, use on every p
 ## 1. Install (one-time, ~2 min)
 
 ```bash
+# 1. Add the orpexp marketplace (one-time)
+claude plugin marketplace add orpexp/orpexp-devkit
+
+# 2. Install the plugin
+claude plugin install orpexp-devkit
+
+# 3. Optional: install Anthropic's official external skills
 git clone git@github.com:orpexp/orpexp-devkit.git ~/claude-framework
-claude plugin add ~/claude-framework
 bash ~/claude-framework/scripts/install-external-skills.sh
-# Manual fallback: cp -r ~/claude-framework/skills/* ~/.claude/skills/
 ```
 
 Verify: open Claude Code and run `/help` — you should see all skills listed.

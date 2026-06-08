@@ -12,29 +12,23 @@ How to install the Claude Code Framework globally, sync it to a project, and res
 
 ---
 
-## 1. Clone the Framework
-
-```bash
-git clone <this-repo-url> ~/claude-framework
-```
-
-Store it somewhere permanent — you'll reference it from multiple projects.
-
----
-
-## 2. Install the Plugin
+## 1. Install the Plugin
 
 Install **orpexp-devkit** as a Claude Code plugin — all 11 skills load automatically:
 
 ```bash
-claude plugin add ~/claude-framework
+# Add the orpexp marketplace (one-time)
+claude plugin marketplace add orpexp/orpexp-devkit
+
+# Install the plugin
+claude plugin install orpexp-devkit
 ```
 
 Verify:
 
 ```bash
 claude plugin list
-# Should show: orpexp-devkit v1.0.0
+# Should show: orpexp-devkit v1.0.0  ✔ enabled
 ```
 
 Open Claude Code and run `/help` — you should see all skills listed.
@@ -42,6 +36,7 @@ Open Claude Code and run `/help` — you should see all skills listed.
 **Manual install (fallback — for IDE extensions or if the plugin command is unavailable):**
 
 ```bash
+git clone git@github.com:orpexp/orpexp-devkit.git ~/claude-framework
 cp -r ~/claude-framework/skills/* ~/.claude/skills/
 ```
 
@@ -50,18 +45,17 @@ cp -r ~/claude-framework/skills/* ~/.claude/skills/
 ## Plugin Management
 
 ```bash
-# Update skills after pulling new framework changes
-git -C ~/claude-framework pull
-claude plugin add ~/claude-framework   # reinstall to apply changes
+# Update to the latest version
+claude plugin update orpexp-devkit
 
 # Remove / uninstall the plugin
-claude plugin remove orpexp-devkit
+claude plugin uninstall orpexp-devkit
 
 # List all installed plugins
 claude plugin list
 
-# Dev mode — run from the live directory without permanent install
-claude --plugin-dir ~/claude-framework
+# List configured marketplaces
+claude plugin marketplace list
 ```
 
 ---

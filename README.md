@@ -24,22 +24,19 @@ A complete Claude Code configuration framework for software product development 
 
 > **New here?** See [**QUICK-START.md**](QUICK-START.md) for the plug-and-play 5-minute setup.
 
-### 1. Clone the repo
+### 1. Install the plugin
 
 ```bash
-git clone git@github.com:orpexp/orpexp-devkit.git claude-framework
-cd claude-framework
+# Add the orpexp marketplace (one-time)
+claude plugin marketplace add orpexp/orpexp-devkit
+
+# Install the plugin — auto-loads all 11 skills
+claude plugin install orpexp-devkit
 ```
 
-### 2. Install global config
+### 2. Apply global config (optional)
 
 ```bash
-# Install the plugin — auto-loads all 11 skills
-claude plugin add ~/claude-framework
-
-# Manual fallback (if plugin command is unavailable)
-# cp -r ~/claude-framework/skills/* ~/.claude/skills/
-
 # Optional: copy global CLAUDE.md (review first)
 cp global/CLAUDE.md ~/.claude/CLAUDE.md
 
@@ -197,7 +194,7 @@ This repository is designed to be the single source of truth for your team's Cla
 **Adding a new skill for your team:**
 1. Create `skills/my-skill/SKILL.md` following the pattern in existing skills
 2. Run `/skill-creator` inside Claude Code for guided skill authoring
-3. Commit and push — teammates reinstall with `claude plugin add ~/claude-framework`
+3. Commit and push — teammates update with `claude plugin update orpexp-devkit`
 
 **Project-level customization:**
 Each project's `CLAUDE.md` at the project root is auto-loaded by Claude Code. Keep all substantive guidance in `.ai/AGENTS.md` and pull it in via `@.ai/AGENTS.md` inside the root `CLAUDE.md` — that is how `.ai/` content reaches Claude.

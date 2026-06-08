@@ -9,6 +9,28 @@ How to install the Claude Code Framework globally, sync it to a project, and res
 - Claude Code CLI installed: `npm install -g @anthropic-ai/claude-code`
 - Or via direct installer — see the [official Claude Code docs](https://docs.anthropic.com/en/docs/claude-code)
 - Verify: `claude --version`
+- GitHub CLI (`gh`) with access to the `orpexp` org — required because this is a **private** repository
+
+---
+
+## 0. Authenticate with GitHub
+
+This repo is private. You must authenticate with the GitHub CLI before installing the plugin:
+
+```bash
+# Install gh if you don't have it
+brew install gh
+
+# Authenticate — follow the browser prompt and grant orpexp org access
+gh auth login
+```
+
+Verify access:
+
+```bash
+gh repo view orpexp/orpexp-devkit --json visibility --jq '.visibility'
+# Should return: PRIVATE
+```
 
 ---
 
@@ -36,8 +58,8 @@ Open Claude Code and run `/help` — you should see all skills listed.
 **Manual install (fallback — for IDE extensions or if the plugin command is unavailable):**
 
 ```bash
-git clone git@github.com:orpexp/orpexp-devkit.git ~/claude-framework
-cp -r ~/claude-framework/skills/* ~/.claude/skills/
+git clone git@github.com:orpexp/orpexp-devkit.git ~/orpexp-devkit
+cp -r ~/orpexp-devkit/skills/* ~/.claude/skills/
 ```
 
 ---
@@ -65,13 +87,13 @@ claude plugin marketplace list
 The `global/CLAUDE.md` file sets default behavior for all your projects. Review it before applying:
 
 ```bash
-cat ~/claude-framework/global/CLAUDE.md
+cat ~/orpexp-devkit/global/CLAUDE.md
 ```
 
 If it matches your preferences, copy it:
 
 ```bash
-cp ~/claude-framework/global/CLAUDE.md ~/.claude/CLAUDE.md
+cp ~/orpexp-devkit/global/CLAUDE.md ~/.claude/CLAUDE.md
 ```
 
 If you already have a `~/.claude/CLAUDE.md`, merge manually rather than overwriting.
@@ -83,7 +105,7 @@ If you already have a `~/.claude/CLAUDE.md`, merge manually rather than overwrit
 Review and merge `global/settings.json`:
 
 ```bash
-cat ~/claude-framework/global/settings.json
+cat ~/orpexp-devkit/global/settings.json
 ```
 
 Your current settings:
@@ -95,7 +117,7 @@ cat ~/.claude/settings.json
 Merge manually or overwrite:
 
 ```bash
-cp ~/claude-framework/global/settings.json ~/.claude/settings.json
+cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
 ```
 
 ---
@@ -105,7 +127,7 @@ cp ~/claude-framework/global/settings.json ~/.claude/settings.json
 These official skills from Anthropic's GitHub add powerful capabilities. Use the included script to install all five at once:
 
 ```bash
-bash ~/claude-framework/scripts/install-external-skills.sh
+bash ~/orpexp-devkit/scripts/install-external-skills.sh
 ```
 
 This installs: `frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator` (from `anthropics/skills`) and `simplify` (from `anthropics/claude-code`).
@@ -138,7 +160,7 @@ rm -rf /tmp/claude-code-repo
 For a new project, use the full project template (preferred):
 
 ```bash
-cp -r ~/claude-framework/project-template/. ./my-product/
+cp -r ~/orpexp-devkit/project-template/. ./my-product/
 cd my-product
 ```
 
@@ -146,8 +168,8 @@ Or for an existing project, copy just the `.ai/` context folder and the root poi
 
 ```bash
 cd my-project
-cp -r ~/claude-framework/project-template/.ai ./.ai
-cp ~/claude-framework/project-template/CLAUDE.md ./CLAUDE.md
+cp -r ~/orpexp-devkit/project-template/.ai ./.ai
+cp ~/orpexp-devkit/project-template/CLAUDE.md ./CLAUDE.md
 ```
 
 Customize `.ai/AGENTS.md` with your project details (name, pitch, industry, stage):
@@ -174,10 +196,10 @@ git commit -m "add AI context and agent configuration"
 When the framework gets updates (new skills, improved guides), pull and reinstall:
 
 ```bash
-git -C ~/claude-framework pull
-claude plugin add ~/claude-framework   # reinstall to pick up changes
+git -C ~/orpexp-devkit pull
+claude plugin update orpexp-devkit
 
-# Manual fallback: cp -r ~/claude-framework/skills/* ~/.claude/skills/
+# Manual fallback: cp -r ~/orpexp-devkit/skills/* ~/.claude/skills/
 ```
 
 ---
@@ -216,9 +238,10 @@ ls ~/.claude/skills/
 rm -rf ~/.claude/skills/old-skill-name
 
 # Reinstall the plugin
-claude plugin add ~/claude-framework
-cp ~/claude-framework/global/settings.json ~/.claude/settings.json
-cp ~/claude-framework/global/CLAUDE.md ~/.claude/CLAUDE.md
+claude plugin marketplace add orpexp/orpexp-devkit
+claude plugin install orpexp-devkit
+cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
+cp ~/orpexp-devkit/global/CLAUDE.md ~/.claude/CLAUDE.md
 ```
 
 ### Full reset (nuclear option)
@@ -231,9 +254,10 @@ cp -r ~/.claude ~/.claude.backup.$(date +%Y%m%d)
 rm -rf ~/.claude
 
 # Reinstall from framework
-claude plugin add ~/claude-framework
-cp ~/claude-framework/global/settings.json ~/.claude/settings.json
-cp ~/claude-framework/global/CLAUDE.md ~/.claude/CLAUDE.md
+claude plugin marketplace add orpexp/orpexp-devkit
+claude plugin install orpexp-devkit
+cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
+cp ~/orpexp-devkit/global/CLAUDE.md ~/.claude/CLAUDE.md
 
 echo "Reset complete. Re-add any external skills and API keys."
 ```
@@ -248,23 +272,25 @@ Add this to your team's onboarding docs. New hires run it once:
 
 ```bash
 #!/bin/bash
-# Claude Code Framework Setup
+# orpexp-devkit Setup
 set -e
-
-FRAMEWORK_REPO="<your-org-fork-url>"
 
 echo "Installing Claude Code..."
 npm install -g @anthropic-ai/claude-code
 
-echo "Cloning Claude framework..."
-git clone $FRAMEWORK_REPO ~/claude-framework
+echo "Authenticating with GitHub (grant orpexp org access when prompted)..."
+gh auth login
+
+echo "Adding orpexp marketplace..."
+claude plugin marketplace add orpexp/orpexp-devkit
 
 echo "Installing orpexp-devkit plugin..."
-claude plugin add ~/claude-framework
+claude plugin install orpexp-devkit
 
-echo "Applying settings..."
-cp ~/claude-framework/global/settings.json ~/.claude/settings.json
-cp ~/claude-framework/global/CLAUDE.md ~/.claude/CLAUDE.md
+# Optional: clone for global config and project template
+# git clone git@github.com:orpexp/orpexp-devkit.git ~/orpexp-devkit
+# cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
+# cp ~/orpexp-devkit/global/CLAUDE.md ~/.claude/CLAUDE.md
 
 echo "Done! Run 'claude' to start, then /help to see all skills."
 ```

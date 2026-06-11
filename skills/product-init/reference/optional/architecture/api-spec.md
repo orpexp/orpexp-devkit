@@ -9,8 +9,10 @@ last_updated: {{DATE}}
 
 # API Specification — {{PRODUCT_NAME}}
 
-> Created when the product exposes or consumes APIs worth specifying. Conventions follow the
-> architect skill's API design principles; the chosen style (REST/tRPC/GraphQL) is an ADR.
+> **This is the API-First contract.** It is authored at the Blueprints stage, *before* the backend
+> is implemented — the backend implements this document, and the UI is one consumer among several.
+> External consumability (third-party/B2B integration, premium API access, headless operation) is
+> a design goal here, not an afterthought. The chosen style (REST/tRPC/GraphQL) is an ADR.
 
 ## Conventions
 

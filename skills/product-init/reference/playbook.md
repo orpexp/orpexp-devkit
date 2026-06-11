@@ -10,14 +10,19 @@ plugin is already installed — just run the skill you need inside Claude Code.
 
 ## Workflow Stages
 
-| Stage | When | Skills |
+Backend before frontend; the API-First contract (written at Blueprints) is the gate. Full guide:
+[`guides/product-workflow.md`](guides/product-workflow.md).
+
+| Stage | When | Skills & agents |
 |---|---|---|
 | 0 · Init | New product or new requirement batch | `/product-init` |
 | 1 · Define | Requirements, user stories, acceptance criteria | `/product-owner`, `/user-story` |
-| 2 · Design | Architecture, UX, tech stack decisions | `/archetype`, `/architect`, `/designer`, `/design-review` |
-| 3 · Build | Planning + implementation | `/build-plan`, `/frontend-dev`, `/backend-dev`, `frontend-builder` + `backend-builder` agents |
-| 4 · Review | Tests, code quality, security | `/webapp-testing`, `/code-review`, `test-engineer` + `qa-reviewer` + `security-reviewer` + `spec-compliance` agents |
-| 5 · Ship | Sprint planning, release notes, deployment | `/scrum-master`, `/build-plan`, `devops-engineer` + `progress-tracker` agents |
+| 2 · Blueprints | Architecture, data model, tech stack, **API-First contract** | `/archetype`, `/architect` |
+| 3 · Backend & Infra | Implement the API per the contract + CI/CD | `/build-plan`, `/backend-dev`, `backend-builder` + `devops-engineer` agents |
+| 4 · UI/UX Draft | Low-fi working layouts against the real API — validate flows, no polish | `/designer`, `frontend-builder` agent (draft fidelity) or `/frontend-dev` |
+| 5 · UI/UX Design | The formal, high-quality frontend | `/design-review`, `/designer`, `frontend-builder` agent |
+| 6 · Review | Tests, code quality, security, spec drift | `/webapp-testing`, `/code-review`, `test-engineer` + `qa-reviewer` + `security-reviewer` + `spec-compliance` agents |
+| 7 · Ship | Deployment, release notes, progress log | `/scrum-master`, `/build-plan`, `devops-engineer` + `progress-tracker` agents |
 
 ---
 
@@ -75,13 +80,13 @@ Install all five with one command inside Claude Code:
 
 ## Common Chains
 
-**New feature — Spec → Build:**
+**New feature — Spec → Build (backend first):**
 ```
-/product-owner  → "Define requirements for [feature]"
-/architect      → "Design the system"
-/build-plan     → "Generate the implementation plan"
-/backend-dev    → "Implement the API"
-/frontend-dev   → "Build the UI components"
+/product-owner    → "Define requirements for [feature]"
+/architect        → "Design the system + extend the API contract (api-spec.md)"
+/build-plan       → "Generate the implementation plan: data → API → draft UI → formal UI"
+backend-builder   → "Implement the API per the contract"
+frontend-builder  → "DRAFT screens against the real API" … then "upgrade to the formal design"
 ```
 
 **New product — Idea → First working version:**
@@ -89,8 +94,8 @@ Install all five with one command inside Claude Code:
 /product-init   → paste raw idea notes
 /product-owner  → refine requirements
 /archetype      → apply an architecture profile from the team library (or skip if nothing fits)
-/architect      → review/accept the proposed ADRs, or design the stack from scratch
-/build-plan     → MVP implementation plan
+/architect      → review/accept the proposed ADRs + write the API-First contract
+/build-plan     → MVP implementation plan (backend & infra before frontend)
 ```
 
 **Ship a feature:**

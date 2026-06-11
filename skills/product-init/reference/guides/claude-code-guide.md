@@ -1,7 +1,8 @@
 # Claude Code Guide
 
 Everything about the tool itself: concepts, first run, CLI reference, permissions, CLAUDE.md, and MCP.
-For *which skill to use when*, see the [Product Workflow](02-product-workflow.md) and [Skills & Agents](03-skills-and-agents.md) guides.
+For *which skill to use when*, see the [Product Workflow](product-workflow.md) guide and your
+project's `.ai/playbook.md` (the full skill + agent roster).
 
 ---
 
@@ -33,7 +34,7 @@ claude
    starter `CLAUDE.md`.
 2. **Orient Claude:** `"Give me an overview of this codebase. What does it do and how is it structured?"`
 3. **Pick a role:** start tasks with a skill (e.g. `/product-owner`, `/architect`) to get
-   role-appropriate output — see [Skills & Agents](03-skills-and-agents.md).
+   role-appropriate output — your project's `.ai/playbook.md` lists them all.
 
 ---
 
@@ -123,7 +124,7 @@ while staying useful to any other tool or human.
 - Use `/compact` when a session gets long to free context.
 - For project memory across sessions, rely on the framework's files, not the conversation:
   `.ai/AGENTS.md` (rules + reading order) and `documents/operations/01-progress.md` (current state).
-  See [Product Workflow → Managing context](02-product-workflow.md#managing-context-across-sessions).
+  See [Product Workflow → Managing context](product-workflow.md#managing-context-across-sessions).
 
 ---
 
@@ -165,4 +166,4 @@ keep them current in `.ai/AGENTS.md` so every session starts oriented.
 checkout flow". `/build-plan` generates exactly this sequence for you.
 
 **Use roles and chains** — the right skill per stage, with handoffs through `documents/`. That's
-the subject of the [Product Workflow guide](02-product-workflow.md).
+the subject of the [Product Workflow guide](product-workflow.md).

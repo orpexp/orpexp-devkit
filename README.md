@@ -27,7 +27,7 @@ claude plugin marketplace add orpexp/orpexp-devkit     # one-time — register t
 claude plugin install orpexp-devkit                    # loads all 13 skills + 8 agents
 ```
 
-Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/04-install-and-maintenance.md).
+Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/02-install-and-maintenance.md).
 
 ### 2. Install external skills (optional)
 
@@ -55,44 +55,58 @@ Inside Claude Code, drop your idea notes into the conversation and run:
 
 This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `platform/`) and extracts your notes into structured knowledge-base documents. No template to copy — the skill builds everything. No stack decisions yet — that comes via `/architect`.
 
-### 4. Define → Design → Build
+### 4. Work the stages
 
 ```
 /product-owner   "Refine requirements and resolve open questions"
 /archetype       "Apply an architecture profile from the team library"
-/architect       "Decide the tech stack and system architecture"
-/build-plan      "Generate the implementation plan for MVP"
-/frontend-dev    "Build the [component]"
-/backend-dev     "Implement the [API endpoint]"
+/architect       "Accept the ADRs and write the API-First contract"
+/build-plan      "Implementation plan: data → API → infra → draft UI → formal UI"
 ```
+Then delegate: `backend-builder` implements the API, `devops-engineer` sets up CI/CD,
+`frontend-builder` drafts the UI against the real API and later upgrades it to the formal design.
 
 ### 5. Review & Ship
 
 ```
-/webapp-testing  "Write tests for [feature]"
+test-engineer / qa-reviewer / security-reviewer / spec-compliance   (agents — tests + checks)
 /code-review     (built-in — review current branch changes)
 /scrum-master    "Plan this sprint" | "Write release notes"
+progress-tracker (agent — log progress, status reports)
 ```
 
 ---
 
-## The Development Workflow
+## Using the framework: the 8-stage workflow
 
-This framework maps to a repeatable product development cycle:
+Every product moves through the same stages. The core strategy: **backend before frontend** —
+the API-First contract written at Blueprints is the gate, the backend implements it, and the UI
+(draft first, formal design second) is just one consumer of it. This keeps the backend organized
+and the product open to third-party/B2B integration from day one.
 
 ```
-0. INIT        → /product-init    (scaffold knowledge base from idea notes)
-1. DEFINE      → /product-owner   (requirements, acceptance criteria)
-                 /user-story      (user stories from requirements)
-2. DESIGN      → /archetype       (apply/save reusable architecture profiles)
-                 /architect       (tech stack decisions, system design, ADRs)
-                 /designer        (UI/UX review, Figma analysis)
-                 /design-review   (extract components from screenshots)
-3. BUILD       → /build-plan      (sequenced implementation plan)
-                 /frontend-dev    (React/Next.js/Tailwind)
-                 /backend-dev     (API, DB, server logic)
-4. DELIVER     → /scrum-master    (sprint planning, retrospectives, release notes)
+0. INIT            /product-init                    scaffold the knowledge base from idea notes
+1. DEFINE          /product-owner /user-story       requirements, stories, acceptance criteria
+2. BLUEPRINTS      /archetype /architect            architecture, data model, ADRs + the
+                                                    API-First contract (api-spec.md)
+3. BACKEND & INFRA backend-builder /backend-dev     implement the API per the contract;
+                   devops-engineer                  CI/CD + staging from day one
+4. UI/UX DRAFT     /designer + frontend-builder     low-fi working layouts against the REAL API —
+                                                    validate flows and the contract, no polish
+5. UI/UX DESIGN    /design-review /designer         the formal, high-quality frontend;
+                   frontend-builder                 design system in core/ui-components
+6. REVIEW          test-engineer qa-reviewer        tests, story review, security, spec drift
+                   security-reviewer spec-compliance
+7. SHIP            devops-engineer /scrum-master    deploy, release notes, progress log
+                   progress-tracker
 ```
+
+**The handoff rule:** each stage writes its output into `documents/`, and the next stage reads it
+from there — never rely on conversation memory between stages.
+
+The full stage-by-stage guide (with prompts per stage) is
+[product-workflow.md](skills/product-init/reference/guides/product-workflow.md) — and it ships
+inside every workspace at `.ai/guides/product-workflow.md`, so your teammates always have it at hand.
 
 ---
 
@@ -128,7 +142,7 @@ This framework maps to a repeatable product development cycle:
 
 ### Bundled Subagents
 
-Separate agents with their own context and tool permissions — ask Claude to use them ("have the qa-reviewer check this story") or let it delegate proactively. See the [Skills & Agents guide](docs/03-skills-and-agents.md).
+Separate agents with their own context and tool permissions — ask Claude to use them ("have the qa-reviewer check this story") or let it delegate proactively. See the [Skills & Agents guide](docs/01-skills-and-agents.md).
 
 | Agent | Use Case | Tools |
 |---|---|---|
@@ -167,7 +181,8 @@ my-product/
 │   ├── AGENTS.md           ←   canonical agent context (behavioral rules, reading order)
 │   ├── conventions.md      ←   the documents/ system rules
 │   ├── platform-layout.md ←   the platform/ code architecture + import rules
-│   └── playbook.md         ←   skills + workflow quick-reference (which skill for which task)
+│   ├── playbook.md         ←   skills + workflow quick-reference (which skill for which task)
+│   └── guides/             ←   team onboarding: claude-code-guide.md + product-workflow.md
 ├── documents/              ← the knowledge base CONTENT (vision, scope, architecture, etc.)
 │   ├── README.md           ←   index: "I need X → read Y" routing table
 │   ├── inputs/             ←   ⭐ stakeholder input — READ-ONLY to agents
@@ -199,12 +214,15 @@ my-product/
 
 ## Guides
 
-Four guides, each with one job:
+Framework guides (this repo):
 
-- [Claude Code Guide](docs/01-claude-code-guide.md) — the tool itself: concepts, first run, CLI reference, permissions, CLAUDE.md, MCP
-- [Product Workflow](docs/02-product-workflow.md) — stage-by-stage: what to run at each phase, with prompts and `documents/` outputs
-- [Skills & Agents](docs/03-skills-and-agents.md) — who does what: the full roster, skills vs subagents, chaining patterns
-- [Install & Maintenance](docs/04-install-and-maintenance.md) — team onboarding, release process, global config, factory reset
+- [Skills & Agents](docs/01-skills-and-agents.md) — who does what: the full roster, skills vs subagents, chaining patterns
+- [Install & Maintenance](docs/02-install-and-maintenance.md) — team onboarding, release process, global config, factory reset
+
+Workspace guides (live in the `product-init` skill and are **copied into every generated workspace at `.ai/guides/`**, so teammates always have them in their product repo):
+
+- [Claude Code Guide](skills/product-init/reference/guides/claude-code-guide.md) — the tool itself: concepts, first run, CLI reference, permissions, CLAUDE.md, MCP
+- [Product Workflow](skills/product-init/reference/guides/product-workflow.md) — the 8 stages: what to run at each phase, with prompts and `documents/` outputs
 
 ---
 

@@ -29,6 +29,7 @@ Read the reference files before scaffolding:
 - `reference/claude-md.md` — the root `CLAUDE.md` (copied verbatim)
 - `reference/documents-readme.md` — template for `documents/README.md`
 - `reference/adr-0001.md` — template for the first ADR
+- `reference/guides/` — team onboarding guides (copied verbatim to `.ai/guides/`)
 - `reference/optional/` — templates for the optional docs (Step 7), mirroring `documents/` paths
 
 **The shape of a generated project:**
@@ -74,7 +75,10 @@ Create this tree (empty files where noted, README only for platform):
 │   ├── AGENTS.md                       ← canonical agent context (from template)
 │   ├── conventions.md                  ← copied from reference/conventions.md
 │   ├── platform-layout.md             ← copied from reference/platform-layout.md
-│   └── playbook.md                     ← skills + workflow quick-reference (from template)
+│   ├── playbook.md                     ← skills + workflow quick-reference (from template)
+│   └── guides/                         ← team onboarding guides (copied from reference/guides/)
+│       ├── claude-code-guide.md
+│       └── product-workflow.md
 ├── documents/
 │   ├── README.md                       ← knowledge-base index (seed during Step 6)
 │   ├── inputs/
@@ -146,6 +150,10 @@ last_updated: {{DATE}}
 
 **`.ai/playbook.md`** — use `reference/playbook.md` as the template. Replace `{{PRODUCT_NAME}}` with the product name.
 
+**`.ai/guides/claude-code-guide.md`** and **`.ai/guides/product-workflow.md`** — copy
+`reference/guides/*` verbatim. These are the team onboarding guides; they update with the plugin,
+so never customize them per project.
+
 **`platform/README.md`** — use `reference/platform-readme.md` as the template. Replace `{{PRODUCT_NAME}}` with the product name.
 
 ### Step 6: Populate each core derived doc
@@ -163,7 +171,7 @@ Extract from the stakeholder notes. **Never invent facts.** Mark gaps as:
 | 3 | `product/01-vision.md` | Problem, solution, value prop, target users, positioning |
 | 4 | `product/02-scope.md` | MVP scope (in/out), phases, feature list |
 | 5 | `product/03-roadmap.md` | Milestones, sequencing, dependencies — flag unknowns |
-| 6 | `architecture/01-overview.md` | Inferred components, data flow — heavy on open questions |
+| 6 | `architecture/01-overview.md` | Inferred components, data flow — heavy on open questions. Note the **API-First** principle (see `.ai/AGENTS.md`) |
 | 7 | `architecture/02-data-model.md` | Entities derivable from the notes |
 | 8 | `architecture/03-tech-stack.md` | Leave as open question → decided via `/architect` |
 | 9 | `business/01-model.md` | Revenue model, pricing, value exchange |
@@ -179,7 +187,8 @@ italic extraction hints with real content from the notes — only when the notes
 content**:
 
 - `product/backlog.md`, `product/user-stories.md`
-- `architecture/security.md`, `architecture/api-spec.md`, `architecture/infrastructure.md`
+- `architecture/security.md`, `architecture/api-spec.md` *(recommended for any product with an
+  API — the API-First contract is authored here at the Blueprints stage)*, `architecture/infrastructure.md`
 - `business/target-market.md`, `business/competitive-analysis.md`, `business/financial-model.md`
 - `design/01-brand.md`, `design/02-ux.md`, `design/design-system.md`
 - `operations/runbook.md`, `operations/onboarding.md`
@@ -263,7 +272,7 @@ Refine the product definition and help me resolve the highest-priority open ques
 Turn the features list into full user stories with acceptance criteria."
 ```
 
-### Phase 2: Design — decide the architecture
+### Phase 2: Blueprints — decide the architecture and the API contract
 
 ```
 /archetype
@@ -273,34 +282,44 @@ Turn the features list into full user stories with acceptance criteria."
 "Read documents/ — especially product/01-vision.md, product/02-scope.md, and
 operations/open-questions.md. Review the Proposed ADRs (if an archetype was applied) or propose
 the tech stack and system architecture. For each decision, write an ADR in
-documents/architecture/decisions/."
+documents/architecture/decisions/. Then design the API-First contract in
+documents/architecture/api-spec.md — the UI is one consumer; third-party integration is another."
 ```
 
-If design assets are available:
-```
-/design-review
-[attach screenshots or Figma exports]
-"Extract all UI components and interactions. Save the output to documents/design/02-ux.md."
-```
-
-### Phase 3: Build — implement
+### Phase 3: Backend & Infra — implement the API first
 
 ```
 /build-plan
-"Read documents/architecture/ and documents/product/02-scope.md.
-Generate a sequenced implementation plan for the MVP."
+"Read documents/architecture/ (especially api-spec.md) and documents/product/02-scope.md.
+Generate a sequenced implementation plan: data layer → API per the contract → infra."
 
-/frontend-dev   # for UI implementation
-/backend-dev    # for API and data layer
+/backend-dev          # or delegate to the backend-builder agent
+                      # devops-engineer agent sets up CI/CD + staging
 ```
 
-### Phase 4: Deliver
+### Phase 4: UI/UX — draft first, then formal design
+
+```
+/designer
+"Map the primary user flows and screen inventory. Save to documents/design/02-ux.md."
+# frontend-builder agent builds DRAFT screens against the real API (no polish — flow validation)
+
+/design-review
+[attach screenshots or Figma exports]
+"Extract all UI components and interactions. Save the output to documents/design/02-ux.md."
+# then frontend-builder upgrades the drafts to the formal, high-quality design
+```
+
+### Phase 5: Deliver
 
 ```
 /scrum-master
 "Read documents/operations/01-progress.md and documents/product/03-roadmap.md.
 Plan the first sprint from the build plan."
 ```
+
+The full stage-by-stage guide (with the backend-first rationale) ships in every workspace at
+`.ai/guides/product-workflow.md`.
 
 ---
 
@@ -328,7 +347,8 @@ Plan the first sprint from the build plan."
 │   ├── AGENTS.md                           ← canonical agent context
 │   ├── conventions.md                      ← the docs-system rules
 │   ├── platform-layout.md                 ← the platform/ code layout
-│   └── playbook.md                         ← skills + workflow quick-reference
+│   ├── playbook.md                         ← skills + workflow quick-reference
+│   └── guides/                             ← claude-code-guide.md + product-workflow.md
 ├── documents/
 │   ├── README.md                           ← index/manifest + routing table
 │   ├── inputs/

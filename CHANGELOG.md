@@ -11,6 +11,20 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.10.0] — 2026-06-10
+
+### Added
+- `skills/product-init/reference/guides/` — the Claude Code guide and Product Workflow guide now ship **with the skill** and are copied into every generated workspace at `.ai/guides/` (the conventions.md pattern), so teammates always have them inside their product repo
+- **API-First standing principle** recorded across product-init: `.ai/AGENTS.md` template (the contract is designed before implementation; the UI is one consumer among several — third-party/B2B integration and headless operation are product options by design), the `api-spec.md` optional template (reframed as *the* contract, authored at Blueprints), SKILL.md Steps 6/7, and a clarifying line in the `modular-monolith-saas` archetype (tRPC is internal transport; the public/partner surface is a separate versioned contract)
+
+### Changed
+- **Workflow restructured to 8 stages, backend-first**: Init → Define → **Blueprints** (architecture + API contract; UX moved out) → **Backend & Infra** (implement the API per the contract + CI/CD; the contract is the gate) → **UI/UX Draft** (low-fi working layouts against the real API — validate flows, no polish) → **UI/UX Design** (the formal high-quality frontend) → Review → Ship. Rationale: frontend-first produces a UI-shaped, disorganized backend. Applied consistently in `guides/product-workflow.md`, `README.md`, the playbook template, the AGENTS.md template, and product-init's workflow-integration phases
+- `README.md` — new "Using the framework: the 8-stage workflow" walkthrough (stage map, handoff rule, links); Guides section split into framework guides (`docs/`) vs workspace guides (shipped via product-init); project tree shows `.ai/guides/`
+- `docs/` renumbered: `01-skills-and-agents.md`, `02-install-and-maintenance.md` (the two team-facing guides moved out); stage names updated in the skills roster
+- `reference/agents-md.md` — skill table replaced with a pointer to `playbook.md` + `guides/` (those update with the plugin; the table went stale)
+
+---
+
 ## [1.9.0] — 2026-06-10
 
 ### Changed

@@ -1,7 +1,7 @@
 # Skills & Agents
 
 Who does what in this framework, and when to use which. Stage-by-stage prompts live in the
-[Product Workflow](02-product-workflow.md); each skill documents itself in depth in its own
+[Product Workflow](../skills/product-init/reference/guides/product-workflow.md); each skill documents itself in depth in its own
 `skills/<name>/SKILL.md`.
 
 ---
@@ -36,13 +36,13 @@ delegate to an agent.
 | `/product-init` | Init | Scaffold + sync the `documents/` knowledge base from stakeholder notes |
 | `/product-owner` | Define | Requirements, MVP scoping, prioritization, acceptance criteria |
 | `/user-story` | Define | Write, split, and map user stories (INVEST, Given/When/Then) |
-| `/archetype` | Design | Apply or save reusable architecture profiles from the team library |
-| `/architect` | Design | System design, data modeling, ADRs, trade-off analysis |
-| `/designer` | Design | UX/UI review, design systems, accessibility audits |
-| `/design-review` | Design | Extract components + interactions from screenshots/Figma exports |
-| `/build-plan` | Build | Sequenced implementation plans, migration + deployment checklists |
-| `/frontend-dev` | Build | React/Next.js components, state, styling — interactive pairing |
-| `/backend-dev` | Build | APIs, databases, auth, queues — interactive pairing |
+| `/archetype` | Blueprints | Apply or save reusable architecture profiles from the team library |
+| `/architect` | Blueprints | System design, data modeling, ADRs, the API-First contract |
+| `/build-plan` | Backend & Infra | Sequenced implementation plans, migration + deployment checklists |
+| `/backend-dev` | Backend & Infra | APIs, databases, auth, queues — interactive pairing |
+| `/designer` | UI/UX Draft + Design | UX/UI review, flows, design systems, accessibility audits |
+| `/frontend-dev` | UI/UX Draft + Design | React/Next.js components, state, styling — interactive pairing |
+| `/design-review` | UI/UX Design | Extract components + interactions from screenshots/Figma exports |
 | `/scrum-master` | Ship | Sprint planning, retrospectives, release notes, post-mortems |
 | `/setup-skills` | Meta | Install Anthropic's 5 external skills (`frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator`, `simplify`) |
 | `/skill-creator` | Meta | Create a new skill for this framework |

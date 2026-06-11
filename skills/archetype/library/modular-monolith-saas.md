@@ -47,7 +47,10 @@ no extra infrastructure until scale demands it.
 - **Next.js fullstack monolith** — one repo section, one deploy, one mental model. At this scale
   the bottleneck is iteration speed, not throughput.
 - **tRPC over REST internally** — end-to-end types between UI and server with zero contract
-  drift; REST is kept only where outsiders call in (webhooks, public API later).
+  drift; REST is kept only where outsiders call in (webhooks, public API later). This coexists
+  with the API-First principle: the *public/partner* surface is a separate, versioned REST
+  contract designed in `documents/architecture/api-spec.md` — tRPC is an internal transport, not
+  the product's API.
 - **Prisma + PostgreSQL** — boring, proven, excellent migrations story. Postgres also covers
   queueing (pg-boss) and full-text search early on, deferring Redis/Elasticsearch.
 - **Row-level multi-tenancy** — `organization_id` on every tenant table + RLS policies. Cheapest

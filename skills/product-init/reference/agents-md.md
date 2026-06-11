@@ -36,7 +36,8 @@ The rules behind the layout: [`conventions.md`](conventions.md) (docs system) an
 [`platform-layout.md`](platform-layout.md) (code under `platform/`).
 
 When asked "what skill should I use for X?", consult [`playbook.md`](playbook.md) — the full skills
-and workflow quick-reference for this project.
+and workflow quick-reference for this project. Team onboarding guides live in
+[`guides/`](guides/): the Claude Code guide and the stage-by-stage product workflow.
 
 ---
 
@@ -70,10 +71,16 @@ and workflow quick-reference for this project.
 
 ---
 
-## 4. Tech stack
+## 4. Tech stack & architecture principles
 
-> [OPEN QUESTION: tech stack not yet decided — to be determined via `/architect`.
-> See [`../documents/architecture/03-tech-stack.md`](../documents/architecture/03-tech-stack.md).]
+> [OPEN QUESTION: tech stack not yet decided — to be determined via `/archetype` (team library)
+> or `/architect`. See [`../documents/architecture/03-tech-stack.md`](../documents/architecture/03-tech-stack.md).]
+
+**Standing principle — API-First.** The API contract is designed *before* it is implemented
+(at the Blueprints stage, in [`../documents/architecture/api-spec.md`](../documents/architecture/api-spec.md));
+the UI is one consumer among several. Third-party/B2B integration is a product option by design —
+premium API access, or headless operation if the product has no UI. Shared request/response types
+live in `platform/core/contracts`. Backend is implemented before frontend; the contract is the gate.
 
 ---
 
@@ -89,18 +96,14 @@ When the stakeholder adds a requirement to
 
 ---
 
-## 6. Framework skills available
+## 6. Framework skills & agents
 
-These Claude Code skills are available for work in this project:
+The orpexp-devkit plugin provides role skills and subagents for every stage:
 
-| Stage | Skill | Purpose |
-|---|---|---|
-| Define | `/product-owner` | Requirements, backlog, acceptance criteria |
-| Define | `/user-story` | Write and split user stories |
-| Design | `/architect` | Tech stack decisions, system design, ADRs |
-| Design | `/designer` | UX/UI review, component specs |
-| Design | `/design-review` | Analyze Figma exports and screenshots |
-| Build | `/frontend-dev` | React/Next.js components, styling |
-| Build | `/backend-dev` | APIs, database, auth, infrastructure |
-| Build | `/build-plan` | Step-by-step implementation plans |
-| Deliver | `/scrum-master` | Sprint planning, retrospectives, release notes |
+```
+0 Init → 1 Define → 2 Blueprints → 3 Backend & Infra → 4 UI/UX Draft → 5 UI/UX Design → 6 Review → 7 Ship
+```
+
+The full roster and per-stage prompts: [`playbook.md`](playbook.md) (quick lookup) and
+[`guides/product-workflow.md`](guides/product-workflow.md) (the stage-by-stage guide). Don't
+duplicate that list here — those two files update with the plugin.

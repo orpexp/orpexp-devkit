@@ -272,7 +272,7 @@ Step 7 — /scrum-master
 ## Tips for Working with Agents
 
 **Give agents enough context:**
-Agents work best when they know your stack, constraints, and goals. Keep `.ai/CLAUDE.md` updated with:
+Agents work best when they know your stack, constraints, and goals. Keep `.ai/AGENTS.md` updated with:
 - Tech stack
 - Current sprint / feature focus
 - Key conventions

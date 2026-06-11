@@ -53,6 +53,7 @@ Use it to understand the tech stack, conventions, and current focus.
 ## Skills Available
 
 This setup includes the following custom skills:
+- `/product-init` — Scaffold a product knowledge base from raw idea notes
 - `/product-owner` — Requirements, backlog, user stories
 - `/architect` — System design, ADRs, data modeling  
 - `/frontend-dev` — React/Next.js components, Tailwind, state
@@ -62,4 +63,5 @@ This setup includes the following custom skills:
 - `/user-story` — Write and refine user stories
 - `/design-review` — Analyze screenshots and Figma designs
 - `/build-plan` — Generate implementation plans
+- `/setup-skills` — Install Anthropic's official external skills
 - `/skill-creator` — Create new framework skills

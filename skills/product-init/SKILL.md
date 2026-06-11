@@ -179,8 +179,9 @@ Extract from the stakeholder notes. **Never invent facts.** Mark gaps as:
 
 ### Step 7: Add optional docs only when warranted
 
-Templates in `optional/` are not scaffolded by default. Copy one into the matching `documents/…`
-path only when the notes give it **real content**:
+Optional docs are not scaffolded by default. Author one at the matching `documents/…` path —
+following the frontmatter and ownership rules in `.ai/conventions.md` — only when the notes give
+it **real content**:
 
 - `product/backlog.md`, `product/user-stories.md`
 - `architecture/security.md`, `architecture/api-spec.md`, `architecture/infrastructure.md`

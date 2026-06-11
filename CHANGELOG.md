@@ -8,6 +8,26 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.4.1] — 2026-06-10
+
+### Fixed
+- `CHANGELOG.md` — added the missing `[1.4.0]` entry (manifests were bumped to 1.4.0 without a changelog entry)
+- `global/CLAUDE.md` — skills list now includes all 12 skills (`/product-init` and `/setup-skills` were missing)
+- `skills/product-init/SKILL.md` — Step 7 no longer references a nonexistent `optional/` templates directory; optional docs are authored on demand following `.ai/conventions.md`
+- `docs/04-agents-guide.md` — context tip pointed to `.ai/CLAUDE.md`; corrected to `.ai/AGENTS.md` (the framework's canonical context file)
+
+---
+
+## [1.4.0] — 2026-06-07
+
+### Changed
+- Root cleanup: merged `QUICK-START.md` into `README.md`; moved `CHEATSHEET.md` → `docs/00-claude-code-guide.md`; moved `INSTALL.md` → `docs/06-install-and-maintenance.md`. Root now contains only `README.md`, `CHANGELOG.md`, and code directories
+- `.claude-plugin/plugin.json` — version 1.2.0 → 1.4.0; `.claude-plugin/marketplace.json` — version 1.0.0 → 1.4.0, "11 skills" → "12 skills" (marketplace.json is what `claude plugin update` reads)
+- `README.md` — "For Teams" gains a "Keeping up to date" block (`claude plugin update orpexp-devkit`) and a version-bump step in the new-skill flow
+- `docs/06-install-and-maintenance.md` — added Release process section
+
+---
+
 ## [1.3.0] — 2026-06-07
 
 ### Added

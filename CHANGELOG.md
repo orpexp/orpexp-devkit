@@ -8,6 +8,21 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.6.0] — 2026-06-10
+
+### Added
+- `skills/archetype/` — new `/archetype` skill: a team library of reusable **architecture archetypes** with four modes — LIST (catalog), SELECT (score profiles against the product's docs and recommend), APPLY (pre-fill `architecture/03-tech-stack.md` + `01-overview.md`, seed Proposed ADRs, add confirm-checklist items to open-questions), and EXTRACT (generalize a finished product's architecture into a new library entry, distributed to the team via plugin update)
+- `skills/archetype/reference/archetype-template.md` — canonical archetype file format (frontmatter: `fits_when`/`avoid_when`/`stack`/`platform_sections`/`adr_seeds`; body: topology, rationale, ADR seeds, trade-offs, exit path, confirm-per-product checklist)
+- `skills/archetype/library/` — 5 starter archetypes + `INDEX.md` catalog: `modular-monolith-saas` (house default), `serverless-event-driven`, `static-site-serverless`, `mobile-bff`, `event-driven-microservices` (explicitly gated on platform-layout split triggers)
+
+### Changed
+- `skills/architect/SKILL.md` — new "Architecture Archetypes" section: check the library before designing from scratch; extract novel architectures after finalizing
+- `skills/product-init/SKILL.md` — "never pre-fill the tech stack" guardrail now carves out explicit `/archetype` APPLY; Step 10 and Phase 2 workflow mention `/archetype`
+- `skills/product-init/reference/playbook.md` — `/archetype` added to Design stage, quick lookup, and the Idea → MVP chain
+- `README.md`, `docs/03-commands-by-stage.md`, `global/CLAUDE.md` — `/archetype` added; skill count 12 → 13
+
+---
+
 ## [1.5.0] — 2026-06-10
 
 ### Added

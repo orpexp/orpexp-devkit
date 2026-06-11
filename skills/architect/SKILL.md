@@ -160,6 +160,16 @@ Don't over-architect for scale you haven't reached.
 
 ---
 
+## Architecture Archetypes (the team library)
+
+Before designing a stack or topology from scratch, check the team's archetype library with
+`/archetype` — a reusable profile (topology, stack, seed ADRs, trade-offs) may already fit, and
+applying one pre-fills `documents/architecture/` with Proposed ADRs you then review and accept.
+Conversely, when you finalize a **novel** architecture worth reusing, run `/archetype` EXTRACT to
+save it to the library for the next product.
+
+---
+
 ## Guardrails
 
 - Always ask about current scale and expected growth before recommending architecture

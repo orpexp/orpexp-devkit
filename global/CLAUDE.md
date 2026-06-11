@@ -55,6 +55,7 @@ Use it to understand the tech stack, conventions, and current focus.
 This setup includes the following custom skills:
 - `/product-init` — Scaffold a product knowledge base from raw idea notes
 - `/product-owner` — Requirements, backlog, user stories
+- `/archetype` — Apply or save reusable architecture profiles (team library)
 - `/architect` — System design, ADRs, data modeling  
 - `/frontend-dev` — React/Next.js components, Tailwind, state
 - `/backend-dev` — APIs, databases, auth, infrastructure

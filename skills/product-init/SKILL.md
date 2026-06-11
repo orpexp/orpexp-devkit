@@ -202,8 +202,9 @@ sequentially — for each *already-decided* technical choice extractable from th
 Report:
 - What was created (file list)
 - The top open questions that need answering before the tech stack can be decided
-- **Recommended next step**: proceed to `/architect` to decide the tech stack, or `/product-owner`
-  to refine requirements first
+- **Recommended next step**: proceed to `/product-owner` to refine requirements, then decide the
+  architecture — `/archetype` to apply a profile from the team library, or `/architect` to design
+  from scratch
 
 ---
 
@@ -265,10 +266,14 @@ Turn the features list into full user stories with acceptance criteria."
 ### Phase 2: Design — decide the architecture
 
 ```
+/archetype
+"Which architecture archetype from the team library fits this product? Apply the one I pick."
+
 /architect
 "Read documents/ — especially product/01-vision.md, product/02-scope.md, and
-operations/open-questions.md. Propose the tech stack and system architecture.
-For each decision, write an ADR in documents/architecture/decisions/."
+operations/open-questions.md. Review the Proposed ADRs (if an archetype was applied) or propose
+the tech stack and system architecture. For each decision, write an ADR in
+documents/architecture/decisions/."
 ```
 
 If design assets are available:
@@ -348,6 +353,7 @@ Plan the first sprint from the build plan."
   exists, you're in SYNC.
 - **Never edit anything under `documents/inputs/`** — it is the stakeholder's read-only territory.
 - **Never pre-fill the tech stack.** Leave `documents/architecture/03-tech-stack.md` as open
-  questions. The stack is a deliberate decision, not a default.
+  questions. The stack is a deliberate decision, not a default. The only exception is an explicit
+  `/archetype` APPLY, which fills it from a team-approved profile with Proposed ADRs.
 - Keep `documents/README.md` truthful: it must list exactly the docs that exist.
 - When unsure whether a gap is an open question vs. an assumption, prefer `[OPEN QUESTION]`.

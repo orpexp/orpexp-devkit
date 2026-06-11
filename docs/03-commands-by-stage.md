@@ -114,12 +114,25 @@ You have requirements. Now you need a technical plan before building.
 
 ### Skills
 ```
+/archetype
 /architect
 /designer
 /backend-dev (for data modeling)
 ```
 
 ### Prompts
+
+**Pick an architecture from the team library:**
+```
+/archetype
+"Read documents/product/. Which architecture archetype fits this product? Apply the one I pick."
+```
+
+**Save a finished architecture as a reusable archetype:**
+```
+/archetype
+"Extract an archetype from this product's documents/architecture/ and save it to the framework library."
+```
 
 **System architecture:**
 ```

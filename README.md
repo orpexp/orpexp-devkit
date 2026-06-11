@@ -1,6 +1,6 @@
 # Claude Code Framework
 
-A complete Claude Code plugin for software product development teams. Install once and get 12 skills, workflow guides, and a docs-first project scaffolder for every stage of your product lifecycle.
+A complete Claude Code plugin for software product development teams. Install once and get 13 skills, workflow guides, and a docs-first project scaffolder for every stage of your product lifecycle.
 
 ---
 
@@ -11,7 +11,7 @@ A complete Claude Code plugin for software product development teams. Install on
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and release notes |
 | [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
-| [`skills/`](skills/) | All 12 bundled skills (loaded automatically via the plugin) |
+| [`skills/`](skills/) | All 13 bundled skills (loaded automatically via the plugin) |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
 
 ---
@@ -33,7 +33,7 @@ Then register the marketplace and install. The `marketplace add` step is a one-t
 # Register the orpexp plugin source (one-time)
 claude plugin marketplace add orpexp/orpexp-devkit
 
-# Install the plugin — auto-loads all 12 skills
+# Install the plugin — auto-loads all 13 skills
 claude plugin install orpexp-devkit
 ```
 
@@ -69,6 +69,7 @@ This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `p
 
 ```
 /product-owner   "Refine requirements and resolve open questions"
+/archetype       "Apply an architecture profile from the team library"
 /architect       "Decide the tech stack and system architecture"
 /build-plan      "Generate the implementation plan for MVP"
 /frontend-dev    "Build the [component]"
@@ -93,7 +94,8 @@ This framework maps to a repeatable product development cycle:
 0. INIT        → /product-init    (scaffold knowledge base from idea notes)
 1. DEFINE      → /product-owner   (requirements, acceptance criteria)
                  /user-story      (user stories from requirements)
-2. DESIGN      → /architect       (tech stack decisions, system design, ADRs)
+2. DESIGN      → /archetype       (apply/save reusable architecture profiles)
+                 /architect       (tech stack decisions, system design, ADRs)
                  /designer        (UI/UX review, Figma analysis)
                  /design-review   (extract components from screenshots)
 3. BUILD       → /build-plan      (sequenced implementation plan)
@@ -129,6 +131,7 @@ This framework maps to a repeatable product development cycle:
 | Skill | Invocation | Use Case |
 |---|---|---|
 | Product Init | `/product-init` | Scaffold a project knowledge base from raw idea notes |
+| Archetype | `/archetype` | Apply or save reusable architecture profiles (team library) |
 | Build Plan | `/build-plan` | Generate a sequenced implementation plan |
 | Setup Skills | `/setup-skills` | Install Anthropic's 5 official external skills |
 | Skill Creator | `/skill-creator` | Create new skills for this framework |

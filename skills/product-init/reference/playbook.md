@@ -14,7 +14,7 @@ plugin is already installed — just run the skill you need inside Claude Code.
 |---|---|---|
 | 0 · Init | New product or new requirement batch | `/product-init` |
 | 1 · Define | Requirements, user stories, acceptance criteria | `/product-owner`, `/user-story` |
-| 2 · Design | Architecture, UX, tech stack decisions | `/architect`, `/designer`, `/design-review` |
+| 2 · Design | Architecture, UX, tech stack decisions | `/archetype`, `/architect`, `/designer`, `/design-review` |
 | 3 · Build | Planning + implementation | `/build-plan`, `/frontend-dev`, `/backend-dev` |
 | 4 · Review | Tests, code quality | `/webapp-testing`, `/code-review` |
 | 5 · Ship | Sprint planning, release notes, deployment | `/scrum-master`, `/build-plan` |
@@ -27,7 +27,9 @@ plugin is already installed — just run the skill you need inside Claude Code.
 |---|---|
 | Turn raw notes into a structured project | `/product-init` |
 | Write or refine user stories | `/user-story` |
-| Decide the tech stack | `/architect` |
+| Apply a known architecture profile from the team library | `/archetype` |
+| Decide the tech stack (or design a novel architecture) | `/architect` |
+| Save this product's architecture for future products | `/archetype` (EXTRACT) |
 | Review a Figma or screenshot for components | `/design-review` |
 | Build a UI from a design spec | `/frontend-design` ¹ |
 | Plan implementation steps for a feature | `/build-plan` |
@@ -77,7 +79,8 @@ Install all five with one command inside Claude Code:
 ```
 /product-init   → paste raw idea notes
 /product-owner  → refine requirements
-/architect      → decide tech stack
+/archetype      → apply an architecture profile from the team library (or skip if nothing fits)
+/architect      → review/accept the proposed ADRs, or design the stack from scratch
 /build-plan     → MVP implementation plan
 ```
 

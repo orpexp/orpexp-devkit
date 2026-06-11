@@ -4,6 +4,7 @@ description: >-
   Install Anthropic's official external Claude Code skills. Use when the user wants to: install
   external skills, set up the full skill library, add Anthropic's official skills (frontend-design,
   webapp-testing, mcp-builder, skill-creator, simplify), or complete the framework setup.
+  Run once, right after installing the orpexp-devkit plugin.
 ---
 
 # Setup Skills

@@ -27,7 +27,9 @@ documents/inputs/  ──(agent extracts; never edits)──▶  product / archi
 
 `documents/inputs/` is **read-only to agents**. This keeps human input low-friction and unstructured,
 while the derived docs stay structured, deduplicated, and machine-legible, and the agent's own record
-of activity lives in the operations docs — never back in the notes.
+of activity lives in the operations docs — never back in the notes. This is not just convention:
+the orpexp-devkit plugin ships a `PreToolUse` hook that **blocks** agent file edits under
+`documents/inputs/` for everyone with the plugin installed.
 
 ---
 

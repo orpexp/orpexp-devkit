@@ -5,6 +5,7 @@ description: >-
   implement UI from a design spec or mockup, manage client-side state, handle form validation,
   optimize frontend performance, write CSS/Tailwind styling, or solve frontend architecture
   questions. Activates frontend engineering vocabulary and React/TypeScript best practices.
+  Used at the UI/UX stages, after the API exists — draft screens first, formal design second.
 ---
 
 # Frontend Developer Agent

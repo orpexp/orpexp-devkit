@@ -5,6 +5,7 @@ description: >-
   database schema, decide between technical approaches, write Architecture Decision Records (ADRs),
   design APIs, plan for scalability, review a system for structural issues, or evaluate technical
   trade-offs. Activates engineering vocabulary around systems thinking, patterns, and trade-offs.
+  Used at the Blueprints stage (pairs with /archetype), after /product-owner; precedes /build-plan.
 ---
 
 # Software Architect Agent

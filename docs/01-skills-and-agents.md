@@ -29,13 +29,14 @@ delegate to an agent.
 
 ---
 
-## The 13 skills
+## The 14 skills
 
 | Skill | Stage | One-liner |
 |---|---|---|
 | `/product-init` | Init | Scaffold + sync the `documents/` knowledge base from stakeholder notes |
 | `/product-owner` | Define | Requirements, MVP scoping, prioritization, acceptance criteria |
 | `/user-story` | Define | Write, split, and map user stories (INVEST, Given/When/Then) |
+| `/business-advisor` | Define | Incubator-style mentor: idea validation, business model, pricing, unit economics |
 | `/archetype` | Blueprints | Apply or save reusable architecture profiles from the team library |
 | `/architect` | Blueprints | System design, data modeling, ADRs, the API-First contract |
 | `/build-plan` | Backend & Infra | Sequenced implementation plans, migration + deployment checklists |

@@ -5,6 +5,7 @@ description: >-
   write or refine user stories, prioritize a backlog, create acceptance criteria, scope an MVP,
   analyze stakeholder needs, or think through product strategy and business value. Activates
   product management vocabulary and frameworks (user stories, MoSCoW, jobs-to-be-done, etc.).
+  Usually follows /product-init; precedes /user-story and the Blueprints stage (/archetype, /architect).
 ---
 
 # Product Owner Agent

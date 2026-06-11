@@ -14,8 +14,8 @@
         "repo": "orpexp/orpexp-devkit",
         "ref": "main"
       },
-      "description": "Product development framework for Claude Code — 13 skills and 8 subagents covering the full product lifecycle from idea to ship, including a reusable architecture-archetype library.",
-      "version": "1.10.0",
+      "description": "Product development framework for Claude Code — 14 skills and 8 subagents covering the full product lifecycle from idea to ship, including a reusable architecture-archetype library and a stakeholder-inputs guardrail hook.",
+      "version": "1.11.0",
       "author": {
         "name": "Victor Orrego"
       },

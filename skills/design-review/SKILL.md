@@ -5,7 +5,8 @@ description: >-
   extract component lists from a design image, understand UI interactions from a screenshot,
   identify what needs to be built from a visual spec, analyze a Figma design for implementation,
   review competitor UX from screenshots, or turn a design image into developer-ready specs.
-  Activate this skill when the user shares or describes a visual design.
+  Activate this skill when the user shares or describes a visual design. Used mainly at the
+  UI/UX Design stage (and in Define for analyzing competitor material); precedes formal frontend work.
 ---
 
 # Design Review Skill

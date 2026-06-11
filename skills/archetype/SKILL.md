@@ -8,6 +8,7 @@ description: >-
   profile, or SAVE a finished product's architecture as a new reusable archetype ("extract an
   archetype from this product", "save this architecture for future products"). Complements
   /architect: the architect designs and decides; this skill reuses and records proven designs.
+  Used at the Blueprints stage, after /product-owner refines requirements.
 ---
 
 # archetype

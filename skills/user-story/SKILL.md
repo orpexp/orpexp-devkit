@@ -5,6 +5,7 @@ description: >-
   or notes into user stories, write acceptance criteria (Given/When/Then), split large stories
   into smaller ones, create a user story map, define story definitions-of-done, or check if
   a story is well-formed. Focused specifically on the craft of writing good user stories.
+  Usually follows /product-owner; stories feed /build-plan and the Review-stage agents.
 ---
 
 # User Story Skill

@@ -1,6 +1,6 @@
 # Claude Code Framework
 
-A complete Claude Code plugin for software product development teams. Install once and get 13 skills, workflow guides, and a docs-first project scaffolder for every stage of your product lifecycle.
+A complete Claude Code plugin for software product development teams. Install once and get 14 skills, 8 subagents, workflow guides, and a docs-first project scaffolder for every stage of your product lifecycle.
 
 ---
 
@@ -11,8 +11,9 @@ A complete Claude Code plugin for software product development teams. Install on
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and release notes |
 | [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
-| [`skills/`](skills/) | All 13 bundled skills (loaded automatically via the plugin) |
+| [`skills/`](skills/) | All 14 bundled skills (loaded automatically via the plugin) |
 | [`agents/`](agents/) | 8 bundled subagents — reviewers (qa, spec, security), builders (frontend, backend, devops), test-engineer, progress-tracker |
+| [`hooks/`](hooks/) | Guardrail hook: blocks agent writes under `documents/inputs/` (stakeholder-only) |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
 
 ---
@@ -24,7 +25,7 @@ A complete Claude Code plugin for software product development teams. Install on
 ```bash
 gh auth login                                          # one-time — this repo is private; grant orpexp org access
 claude plugin marketplace add orpexp/orpexp-devkit     # one-time — register the plugin source
-claude plugin install orpexp-devkit                    # loads all 13 skills + 8 agents
+claude plugin install orpexp-devkit                    # loads all 14 skills + 8 agents
 ```
 
 Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/02-install-and-maintenance.md).
@@ -87,6 +88,7 @@ and the product open to third-party/B2B integration from day one.
 ```
 0. INIT            /product-init                    scaffold the knowledge base from idea notes
 1. DEFINE          /product-owner /user-story       requirements, stories, acceptance criteria
+                   /business-advisor                business model, pricing, idea validation
 2. BLUEPRINTS      /archetype /architect            architecture, data model, ADRs + the
                                                     API-First contract (api-spec.md)
 3. BACKEND & INFRA backend-builder /backend-dev     implement the API per the contract;
@@ -128,6 +130,7 @@ inside every workspace at `.ai/guides/product-workflow.md`, so your teammates al
 | Skill | Invocation | Use Case |
 |---|---|---|
 | User Story | `/user-story` | Write and refine user stories from requirements |
+| Business Advisor | `/business-advisor` | Idea validation, business model, pricing, unit economics |
 | Design Review | `/design-review` | Analyze screenshots, Figma exports, mockups |
 
 ### Workflow Skills

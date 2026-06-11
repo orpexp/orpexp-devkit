@@ -5,7 +5,8 @@ description: >-
   design or migrate a database schema, implement authentication and authorization, set up
   background jobs or queues, handle webhooks, configure infrastructure or CI/CD, optimize
   server performance, or debug backend issues. Activates backend engineering vocabulary and
-  server-side best practices.
+  server-side best practices. Used at the Backend & Infra stage, right after Blueprints — the
+  backend implements the API-First contract before any frontend work starts.
 ---
 
 # Backend Developer Agent

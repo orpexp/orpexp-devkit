@@ -5,6 +5,7 @@ description: >-
   break down a feature into ordered development steps, get a build sequence before starting
   implementation, create a deployment checklist, plan a migration, or organize complex work
   into a step-by-step roadmap. Produces an actionable numbered plan you can follow task by task.
+  Usually follows the Blueprints stage; plans run backend-first (data → API → infra → draft UI → formal UI).
 ---
 
 # Build Plan Skill

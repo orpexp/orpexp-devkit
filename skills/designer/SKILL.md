@@ -5,6 +5,7 @@ description: >-
   review a Figma export or mockup, define component architecture for a design system, audit
   for accessibility, analyze user flows and friction points, design onboarding or interaction
   patterns, or review a competitor's UX. Activates design vocabulary and user-centered thinking.
+  Used at the UI/UX Draft stage (flows, screen inventory) and UI/UX Design stage (design system).
 ---
 
 # UX/UI Designer Agent

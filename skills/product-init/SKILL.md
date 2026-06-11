@@ -8,7 +8,8 @@ description: >-
   specs from those notes ("sync the docs from the notes", "I added a new requirement — update the
   specs", "turn my idea notes into a proper spec"). Turns unstructured stakeholder notes into a
   structured, self-describing documents/ tree (vision, scope, roadmap, architecture, ADRs, progress,
-  open-questions, glossary, business/legal) optimized for humans and AI agents.
+  open-questions, glossary, business/legal) optimized for humans and AI agents. The starting point
+  of the workflow: precedes /product-owner (Define) and everything after it.
 ---
 
 # product-init

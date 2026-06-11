@@ -5,6 +5,7 @@ description: >-
   track team velocity, write release notes (technical or customer-facing), create a deployment
   checklist, write a post-mortem or incident report, draft team communication, or improve
   delivery processes. Activates agile vocabulary and delivery management frameworks.
+  Used at the Ship stage, after Review; pairs with the devops-engineer and progress-tracker agents.
 ---
 
 # Scrum Master Agent

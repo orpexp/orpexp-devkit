@@ -6,8 +6,19 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ## [Unreleased]
 
-- Backlog: `PreToolUse` guardrail hook blocking writes under `documents/inputs/` (the framework's read-only invariant is currently prose-only); `skills/business-advisor` persona skill
-- Backlog: skill descriptions gain sequence hints ("usually follows /product-init, precedes /architect")
+---
+
+## [1.11.0] — 2026-06-11
+
+### Added
+- `hooks/` — the plugin now ships a **`PreToolUse` guardrail hook** (`hooks.json` + `protect-inputs.sh`) that blocks any agent Edit/Write/MultiEdit/NotebookEdit under `documents/inputs/`. The framework's core invariant — stakeholder territory is read-only to agents — is now mechanically enforced for everyone with the plugin installed, not just prose in AGENTS.md. The hook fails open on malformed payloads and points blocked agents at the `/product-init` SYNC workflow. (Note: it guards the file-editing tools; `documents/inputs/` discipline in Bash commands remains convention.)
+- `skills/business-advisor/` — 14th skill: incubator-style cofounder-mentor for the Define stage. Idea validation (riskiest-assumption tests), business model design, pricing & packaging, unit economics (CAC/LTV/break-even), positioning & moats, and incorporation-readiness checklists. Writes its conclusions to `documents/business/*`; hands feature scoping to `/product-owner`; never invents market data and frames legal/tax topics as checklists for a professional
+- **Sequence hints in every skill description** — each skill now states where it sits in the 8-stage workflow ("Usually follows /product-init; precedes …"), so skill pickers and agents self-orient without consulting the guides
+
+### Changed
+- `.claude-plugin/plugin.json` — registers the hook (`"hooks": "./hooks/hooks.json"`); description now "14 skills and 8 subagents … and a stakeholder-inputs guardrail hook"; version 1.11.0 (marketplace.json synced)
+- `skills/product-init/reference/conventions.md` — documents that the inputs/ read-only rule is hook-enforced
+- Rosters updated for `/business-advisor`: `README.md`, `docs/01-skills-and-agents.md` (14 skills), `docs/02-install-and-maintenance.md`, playbook template, `global/CLAUDE.md`
 
 ---
 

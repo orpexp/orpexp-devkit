@@ -16,7 +16,7 @@ Backend before frontend; the API-First contract (written at Blueprints) is the g
 | Stage | When | Skills & agents |
 |---|---|---|
 | 0 · Init | New product or new requirement batch | `/product-init` |
-| 1 · Define | Requirements, user stories, acceptance criteria | `/product-owner`, `/user-story` |
+| 1 · Define | Requirements, user stories, acceptance criteria, business model | `/product-owner`, `/user-story`, `/business-advisor` |
 | 2 · Blueprints | Architecture, data model, tech stack, **API-First contract** | `/archetype`, `/architect` |
 | 3 · Backend & Infra | Implement the API per the contract + CI/CD | `/build-plan`, `/backend-dev`, `backend-builder` + `devops-engineer` agents |
 | 4 · UI/UX Draft | Low-fi working layouts against the real API — validate flows, no polish | `/designer`, `frontend-builder` agent (draft fidelity) or `/frontend-dev` |
@@ -32,6 +32,7 @@ Backend before frontend; the API-First contract (written at Blueprints) is the g
 |---|---|
 | Turn raw notes into a structured project | `/product-init` |
 | Write or refine user stories | `/user-story` |
+| Validate the idea, business model, pricing, or unit economics | `/business-advisor` |
 | Apply a known architecture profile from the team library | `/archetype` |
 | Decide the tech stack (or design a novel architecture) | `/architect` |
 | Save this product's architecture for future products | `/archetype` (EXTRACT) |

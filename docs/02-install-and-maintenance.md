@@ -45,7 +45,8 @@ gh repo view orpexp/orpexp-devkit --json visibility --jq '.visibility'
 
 ## 1. Install the plugin
 
-Install **orpexp-devkit** as a Claude Code plugin — all 13 skills and 8 subagents load automatically:
+Install **orpexp-devkit** as a Claude Code plugin — all 14 skills, 8 subagents, and the
+`documents/inputs/` guardrail hook load automatically:
 
 ```bash
 # Add the orpexp marketplace (one-time)

@@ -8,6 +8,22 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.7.0] — 2026-06-10
+
+### Added
+- `agents/` — the plugin now ships 3 subagents (separate context + scoped tools, complementing the role skills):
+  - `qa-reviewer` — reviews implemented code against acceptance criteria, `.ai/` conventions, and common defect classes; read-only by design (reports, never fixes)
+  - `spec-compliance` — detects drift between `documents/` (the spec) and `platform/` (the code): scope coverage, Accepted-ADR compliance, tech-stack drift, and a mechanical check of imports against the platform-layout allowed-imports matrix; read-only
+  - `frontend-builder` — builds complete UI features from a spec or design: typed React, every state handled, accessibility, plus an explicit aesthetic standard (hierarchy, spacing rhythm, deliberate color, distinctive-not-generic); full tools
+
+### Changed
+- `docs/04-agents-guide.md` — new "Subagents vs role skills" section explaining when to use which, with the subagent roster
+- `skills/product-init/reference/playbook.md` — Review stage and quick lookup now include the subagents
+- `README.md` — `agents/` in the repo table + Bundled Subagents reference
+- `.claude-plugin/plugin.json` + `marketplace.json` — version 1.7.0; description mentions subagents; keywords gain `agents`, `architecture-archetypes`
+
+---
+
 ## [1.6.0] — 2026-06-10
 
 ### Added

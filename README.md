@@ -12,6 +12,7 @@ A complete Claude Code plugin for software product development teams. Install on
 | [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
 | [`skills/`](skills/) | All 13 bundled skills (loaded automatically via the plugin) |
+| [`agents/`](agents/) | 3 bundled subagents: `qa-reviewer`, `spec-compliance`, `frontend-builder` |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
 
 ---
@@ -135,6 +136,16 @@ This framework maps to a repeatable product development cycle:
 | Build Plan | `/build-plan` | Generate a sequenced implementation plan |
 | Setup Skills | `/setup-skills` | Install Anthropic's 5 official external skills |
 | Skill Creator | `/skill-creator` | Create new skills for this framework |
+
+### Bundled Subagents
+
+Separate agents with their own context and tool permissions — ask Claude to use them ("have the qa-reviewer check this story") or let it delegate proactively. See the [Agents Guide](docs/04-agents-guide.md).
+
+| Agent | Use Case | Tools |
+|---|---|---|
+| `qa-reviewer` | Review implemented code against acceptance criteria + conventions | Read-only |
+| `spec-compliance` | Detect drift between `documents/` (spec) and `platform/` (code) | Read-only |
+| `frontend-builder` | Build a complete, polished UI feature from a spec or design | Full |
 
 ### From the Anthropic Skills Library
 

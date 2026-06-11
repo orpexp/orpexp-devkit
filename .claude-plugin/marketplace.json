@@ -14,14 +14,14 @@
         "repo": "orpexp/orpexp-devkit",
         "ref": "main"
       },
-      "description": "Product development framework for Claude Code — 13 skills covering the full product lifecycle from idea to ship, including a reusable architecture-archetype library.",
-      "version": "1.6.0",
+      "description": "Product development framework for Claude Code — 13 skills and 3 subagents covering the full product lifecycle from idea to ship, including a reusable architecture-archetype library.",
+      "version": "1.7.0",
       "author": {
         "name": "Victor Orrego"
       },
       "repository": "https://github.com/orpexp/orpexp-devkit",
       "license": "MIT",
-      "keywords": ["product-development", "skills", "workflow", "architect", "product-owner"],
+      "keywords": ["product-development", "skills", "agents", "workflow", "architect", "product-owner", "architecture-archetypes"],
       "defaultEnabled": true
     }
   ]

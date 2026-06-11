@@ -4,6 +4,29 @@ How to use Claude Code's role-based agent skills effectively. Each agent brings 
 
 ---
 
+## Subagents vs role skills
+
+The framework ships two different things, used differently:
+
+| | Role skills (`/architect`, `/frontend-dev`, …) | Subagents (`agents/`) |
+|---|---|---|
+| What it does | Changes the **current conversation's** perspective and vocabulary | Spawns a **separate agent** with its own context window and tool permissions |
+| Best for | Interactive work: deciding, discussing, iterating with you | Bounded, delegable tasks: "review this", "verify that", "build this whole feature" |
+| Context | Shares everything already in your session | Starts fresh — gets only what its prompt and the repo give it |
+| How to invoke | Type the slash command | Ask Claude to use it ("have the qa-reviewer check this story") or let Claude delegate proactively |
+
+The plugin's subagents:
+
+| Agent | Purpose | Tools |
+|---|---|---|
+| `qa-reviewer` | Reviews implemented code against acceptance criteria, conventions, and common defect classes. Reports findings — never edits. | Read-only |
+| `spec-compliance` | Detects drift between `documents/` (the spec) and `platform/` (the code): scope, Accepted ADRs, tech stack, and the allowed-imports matrix. | Read-only |
+| `frontend-builder` | Builds complete, polished UI features from a spec or design — typed React, all states handled, strong aesthetic judgment. | Full (edits files) |
+
+Typical flow: build with `/frontend-dev` or delegate to `frontend-builder` → have `qa-reviewer` check the story → run `spec-compliance` before a release.
+
+---
+
 ## Why Agents?
 
 When you ask Claude a question without a role, it gives you a generalist answer. When you invoke an agent skill, Claude:

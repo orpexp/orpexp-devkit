@@ -16,7 +16,7 @@ plugin is already installed — just run the skill you need inside Claude Code.
 | 1 · Define | Requirements, user stories, acceptance criteria | `/product-owner`, `/user-story` |
 | 2 · Design | Architecture, UX, tech stack decisions | `/archetype`, `/architect`, `/designer`, `/design-review` |
 | 3 · Build | Planning + implementation | `/build-plan`, `/frontend-dev`, `/backend-dev` |
-| 4 · Review | Tests, code quality | `/webapp-testing`, `/code-review` |
+| 4 · Review | Tests, code quality | `/webapp-testing`, `/code-review`, `qa-reviewer` + `spec-compliance` agents |
 | 5 · Ship | Sprint planning, release notes, deployment | `/scrum-master`, `/build-plan` |
 
 ---
@@ -34,8 +34,11 @@ plugin is already installed — just run the skill you need inside Claude Code.
 | Build a UI from a design spec | `/frontend-design` ¹ |
 | Plan implementation steps for a feature | `/build-plan` |
 | Build a React/Next.js component | `/frontend-dev` |
+| Delegate a whole UI feature (built + polished, all states) | `frontend-builder` agent ² |
 | Build an API, database model, or auth flow | `/backend-dev` |
 | Review code for quality and issues | `/code-review` |
+| Check a story's implementation against its acceptance criteria | `qa-reviewer` agent ² |
+| Check the code still matches documents/ (scope, ADRs, imports) | `spec-compliance` agent ² |
 | Write automated tests | `/webapp-testing` ¹ |
 | Build a new MCP server tool | `/mcp-builder` ¹ |
 | Simplify or refactor complex code | `/simplify` ¹ |
@@ -43,6 +46,7 @@ plugin is already installed — just run the skill you need inside Claude Code.
 | Create a new skill for this framework | `/skill-creator` ¹ |
 
 ¹ External skill — install once with `/setup-skills` before first use.
+² Subagent (bundled with the plugin) — ask your agent to use it: "have the qa-reviewer check this story".
 
 ---
 

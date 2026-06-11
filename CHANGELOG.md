@@ -6,6 +6,24 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ## [Unreleased]
 
+- Backlog: `PreToolUse` guardrail hook blocking writes under `documents/inputs/` (the framework's read-only invariant is currently prose-only); `skills/business-advisor` persona skill
+- Backlog: skill descriptions gain sequence hints ("usually follows /product-init, precedes /architect")
+
+---
+
+## [1.9.0] — 2026-06-10
+
+### Changed
+- `docs/` consolidated from 7 guides (~1,950 lines) to 4 (~1,000 lines), each with one job — applying the framework's own "one fact, one home" rule to its docs:
+  - `docs/01-claude-code-guide.md` — the tool itself (merges old 00 + 01): concepts, first run, CLI/commands/shortcuts reference, permission modes (once), CLAUDE.md thin-pointer convention (the contradictory "fat CLAUDE.md" examples removed), MCP setup + recommended-servers table
+  - `docs/02-product-workflow.md` — THE stage-by-stage guide (merges old 02 + 03): goal, skills + agents, prompts, and `documents/` outputs per stage; conventions-aligned (`.ai/AGENTS.md`, `documents/architecture/decisions/`); includes `/archetype` and all 8 subagents
+  - `docs/03-skills-and-agents.md` — who does what (slims old 04): skills-vs-subagents, compact 13-skill + 8-agent rosters, chaining, anti-patterns; the ~200-line per-skill sections removed (each SKILL.md is the source of truth)
+  - `docs/04-install-and-maintenance.md` — old 06 corrected: "11 skills" → 13 skills + 8 agents, hardcoded "v1.0.0" removed, directory reference includes `.ai/playbook.md`
+- `README.md` — Guides section lists the 4 new files; Quick Start install shrunk to the 3 commands + link to the full guide
+
+### Removed
+- `docs/05-framework-improvements.md` — items 1 (plugin packaging) and 2 (subagents) shipped; item 3 (inputs/ guardrail hook) moved to the Unreleased backlog above; item 4 (MCP recommendations) implemented as the table in `docs/01-claude-code-guide.md`
+
 ---
 
 ## [1.8.0] — 2026-06-10

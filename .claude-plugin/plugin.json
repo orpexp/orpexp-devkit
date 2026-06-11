@@ -1,6 +1,6 @@
 {
   "name": "orpexp-devkit",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Product development framework for Claude Code — 13 skills and 8 subagents covering the full product lifecycle from idea to ship, including a reusable architecture-archetype library.",
   "author": {
     "name": "Victor Orrego",

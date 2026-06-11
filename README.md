@@ -21,24 +21,13 @@ A complete Claude Code plugin for software product development teams. Install on
 
 ### 1. Install the plugin
 
-This repo is **private** — authenticate with GitHub first so Claude Code can access it:
-
 ```bash
-# One-time GitHub auth (grant orpexp org access when prompted)
-gh auth login
+gh auth login                                          # one-time — this repo is private; grant orpexp org access
+claude plugin marketplace add orpexp/orpexp-devkit     # one-time — register the plugin source
+claude plugin install orpexp-devkit                    # loads all 13 skills + 8 agents
 ```
 
-Then register the marketplace and install. The `marketplace add` step is a one-time setup that tells Claude Code where to find `orpexp-devkit`; without it, `plugin install` wouldn't know which source to pull from.
-
-```bash
-# Register the orpexp plugin source (one-time)
-claude plugin marketplace add orpexp/orpexp-devkit
-
-# Install the plugin — auto-loads all 13 skills
-claude plugin install orpexp-devkit
-```
-
-Verify: open Claude Code and run `/help` — all skills should appear in the list.
+Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/04-install-and-maintenance.md).
 
 ### 2. Install external skills (optional)
 
@@ -139,7 +128,7 @@ This framework maps to a repeatable product development cycle:
 
 ### Bundled Subagents
 
-Separate agents with their own context and tool permissions — ask Claude to use them ("have the qa-reviewer check this story") or let it delegate proactively. See the [Agents Guide](docs/04-agents-guide.md).
+Separate agents with their own context and tool permissions — ask Claude to use them ("have the qa-reviewer check this story") or let it delegate proactively. See the [Skills & Agents guide](docs/03-skills-and-agents.md).
 
 | Agent | Use Case | Tools |
 |---|---|---|
@@ -210,13 +199,12 @@ my-product/
 
 ## Guides
 
-- [Claude Code Guide](docs/00-claude-code-guide.md) — CLI commands, keyboard shortcuts, permission modes, tips
-- [Getting Started](docs/01-getting-started.md) — Setup, first run, core concepts
-- [Project Workflow](docs/02-project-workflow.md) — End-to-end product development with Claude Code
-- [Commands by Stage](docs/03-commands-by-stage.md) — What to run at each phase
-- [Agents Guide](docs/04-agents-guide.md) — How to use role-based agents effectively
-- [Framework Improvements](docs/05-framework-improvements.md) — Review & roadmap for evolving this framework
-- [Install & Maintenance](docs/06-install-and-maintenance.md) — Team onboarding, global config, factory reset
+Four guides, each with one job:
+
+- [Claude Code Guide](docs/01-claude-code-guide.md) — the tool itself: concepts, first run, CLI reference, permissions, CLAUDE.md, MCP
+- [Product Workflow](docs/02-product-workflow.md) — stage-by-stage: what to run at each phase, with prompts and `documents/` outputs
+- [Skills & Agents](docs/03-skills-and-agents.md) — who does what: the full roster, skills vs subagents, chaining patterns
+- [Install & Maintenance](docs/04-install-and-maintenance.md) — team onboarding, release process, global config, factory reset
 
 ---
 

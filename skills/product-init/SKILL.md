@@ -20,12 +20,16 @@ This skill scaffolds **docs only** (no application code skeleton). It is the gen
 project it creates is a self-contained instance. The tech stack is a deliberate gap — it is left as
 an open question to be decided via `/architect` once the product is defined.
 
-Read all five reference files before scaffolding:
+Read the reference files before scaffolding:
 - `reference/conventions.md` — the docs system (also copied to `.ai/conventions.md`)
 - `reference/platform-layout.md` — code layout rules (also copied to `.ai/platform-layout.md`)
 - `reference/agents-md.md` — template for `.ai/AGENTS.md`
 - `reference/platform-readme.md` — template for `platform/README.md`
 - `reference/playbook.md` — template for `.ai/playbook.md`
+- `reference/claude-md.md` — the root `CLAUDE.md` (copied verbatim)
+- `reference/documents-readme.md` — template for `documents/README.md`
+- `reference/adr-0001.md` — template for the first ADR
+- `reference/optional/` — templates for the optional docs (Step 7), mirroring `documents/` paths
 
 **The shape of a generated project:**
 **`.ai/` = how to work in this repo; `documents/` = the knowledge-base content; `platform/` = code.**
@@ -127,17 +131,7 @@ last_updated: {{DATE}}
 
 ### Step 5: Write the scaffolded files from reference templates
 
-**`CLAUDE.md`** — write this exact content:
-
-```markdown
-# CLAUDE.md
-
-The canonical, tool-agnostic working context for this repo lives in
-[`.ai/AGENTS.md`](.ai/AGENTS.md). The line below imports it so Claude Code loads it automatically —
-keep substantive guidance there, not here.
-
-@.ai/AGENTS.md
-```
+**`CLAUDE.md`** — copy `reference/claude-md.md` verbatim.
 
 **`.ai/AGENTS.md`** — use `reference/agents-md.md` as the template. Replace every `{{PLACEHOLDER}}` token with the values confirmed in Step 2:
 - `{{PRODUCT_NAME}}` → the product name
@@ -165,7 +159,7 @@ Extract from the stakeholder notes. **Never invent facts.** Mark gaps as:
 | # | File | Extract |
 |---|---|---|
 | 1 | `operations/02-glossary.md` | Domain terms, proper nouns, acronyms from the notes |
-| 2 | `documents/README.md` | Index + routing table (update as docs are created) |
+| 2 | `documents/README.md` | Seed from `reference/documents-readme.md`; update as docs are created |
 | 3 | `product/01-vision.md` | Problem, solution, value prop, target users, positioning |
 | 4 | `product/02-scope.md` | MVP scope (in/out), phases, feature list |
 | 5 | `product/03-roadmap.md` | Milestones, sequencing, dependencies — flag unknowns |
@@ -179,9 +173,10 @@ Extract from the stakeholder notes. **Never invent facts.** Mark gaps as:
 
 ### Step 7: Add optional docs only when warranted
 
-Optional docs are not scaffolded by default. Author one at the matching `documents/…` path —
-following the frontmatter and ownership rules in `.ai/conventions.md` — only when the notes give
-it **real content**:
+Optional docs are not scaffolded by default. Templates live in `reference/optional/`, mirroring
+the `documents/…` paths. Copy one into the matching path — fill the placeholders and replace the
+italic extraction hints with real content from the notes — only when the notes give it **real
+content**:
 
 - `product/backlog.md`, `product/user-stories.md`
 - `architecture/security.md`, `architecture/api-spec.md`, `architecture/infrastructure.md`
@@ -198,8 +193,9 @@ doc you created out of the "Optional" table into the main map.
 
 ### Step 9: Initialize the first ADR
 
-Seed `documents/architecture/decisions/0001-record-architecture-decisions.md` and add an ADR for
-each *already-decided* technical choice extractable from the notes.
+Seed `documents/architecture/decisions/0001-record-architecture-decisions.md` from
+`reference/adr-0001.md` (replace `{{PRODUCT_NAME}}`), then add an ADR — same format, numbered
+sequentially — for each *already-decided* technical choice extractable from the notes.
 
 ### Step 10: Summarize to the user
 

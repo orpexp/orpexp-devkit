@@ -8,6 +8,19 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.5.0] — 2026-06-10
+
+### Added
+- `skills/product-init/reference/optional/` — 13 fill-in-the-blank templates for the optional docs, mirroring `documents/` paths: `product/{backlog,user-stories}`, `architecture/{security,api-spec,infrastructure}`, `business/{target-market,competitive-analysis,financial-model}`, `design/{01-brand,02-ux,design-system}`, `operations/{runbook,onboarding}`. Each carries the standard YAML front-matter and extraction hints
+- `skills/product-init/reference/documents-readme.md` — template for `documents/README.md` (core docs table, optional docs table, "I need X → read Y" routing)
+- `skills/product-init/reference/adr-0001.md` — template for the seed ADR (record-architecture-decisions)
+- `skills/product-init/reference/claude-md.md` — the root `CLAUDE.md` pointer file, extracted from inline SKILL.md content
+
+### Changed
+- `skills/product-init/SKILL.md` — Steps 5/6/7/9 now point at the new reference templates; reading list updated
+
+---
+
 ## [1.4.1] — 2026-06-10
 
 ### Fixed

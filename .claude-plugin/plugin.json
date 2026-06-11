@@ -1,6 +1,6 @@
 {
   "name": "orpexp-devkit",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Product development framework for Claude Code — 12 skills covering the full product lifecycle from idea to ship.",
   "author": {
     "name": "Victor Orrego",

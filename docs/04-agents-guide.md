@@ -21,9 +21,16 @@ The plugin's subagents:
 |---|---|---|
 | `qa-reviewer` | Reviews implemented code against acceptance criteria, conventions, and common defect classes. Reports findings — never edits. | Read-only |
 | `spec-compliance` | Detects drift between `documents/` (the spec) and `platform/` (the code): scope, Accepted ADRs, tech stack, and the allowed-imports matrix. | Read-only |
+| `security-reviewer` | OWASP Top-10 + threat pass over `platform/`, checked against the product's stated security model. Reports — never fixes. | Read-only |
 | `frontend-builder` | Builds complete, polished UI features from a spec or design — typed React, all states handled, strong aesthetic judgment. | Full (edits files) |
+| `backend-builder` | Builds complete backend features — API, data model, authz, migrations, tests — honoring Accepted ADRs and platform-layout placement. | Full (edits files) |
+| `test-engineer` | Writes automated tests from a story's acceptance criteria, runs them, and reports criteria coverage. Never touches production code. | Test files only |
+| `progress-tracker` | Keeps `operations/01-progress.md` and `open-questions.md` truthful after work lands; produces status reports (done/blocked/next vs roadmap). | `documents/operations/` only |
+| `devops-engineer` | Builds fast, cached CI/CD pipelines and IaC scaffolding per the decided infrastructure. Plans/synths only — never applies to production. | Full (ops/infra paths) |
 
-Typical flow: build with `/frontend-dev` or delegate to `frontend-builder` → have `qa-reviewer` check the story → run `spec-compliance` before a release.
+Typical flow: delegate to `frontend-builder`/`backend-builder` → `test-engineer` writes the tests → `qa-reviewer` checks the story → `security-reviewer` + `spec-compliance` before a release → `devops-engineer` ships it → `progress-tracker` logs it.
+
+**Roles that deliberately stay skills, not agents:** the *stakeholder* is a human (an agent simulating one would invent requirements — forbidden by the framework's extraction rules); *product owner* and *solutions architect* are decision-heavy, interactive roles that need you in the loop (`/product-owner`, `/architect`, `/archetype` — the architect's delegable review half is already `spec-compliance`); *release manager* is covered by `/scrum-master`.
 
 ---
 

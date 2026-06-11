@@ -15,9 +15,9 @@ plugin is already installed — just run the skill you need inside Claude Code.
 | 0 · Init | New product or new requirement batch | `/product-init` |
 | 1 · Define | Requirements, user stories, acceptance criteria | `/product-owner`, `/user-story` |
 | 2 · Design | Architecture, UX, tech stack decisions | `/archetype`, `/architect`, `/designer`, `/design-review` |
-| 3 · Build | Planning + implementation | `/build-plan`, `/frontend-dev`, `/backend-dev` |
-| 4 · Review | Tests, code quality | `/webapp-testing`, `/code-review`, `qa-reviewer` + `spec-compliance` agents |
-| 5 · Ship | Sprint planning, release notes, deployment | `/scrum-master`, `/build-plan` |
+| 3 · Build | Planning + implementation | `/build-plan`, `/frontend-dev`, `/backend-dev`, `frontend-builder` + `backend-builder` agents |
+| 4 · Review | Tests, code quality, security | `/webapp-testing`, `/code-review`, `test-engineer` + `qa-reviewer` + `security-reviewer` + `spec-compliance` agents |
+| 5 · Ship | Sprint planning, release notes, deployment | `/scrum-master`, `/build-plan`, `devops-engineer` + `progress-tracker` agents |
 
 ---
 
@@ -36,9 +36,14 @@ plugin is already installed — just run the skill you need inside Claude Code.
 | Build a React/Next.js component | `/frontend-dev` |
 | Delegate a whole UI feature (built + polished, all states) | `frontend-builder` agent ² |
 | Build an API, database model, or auth flow | `/backend-dev` |
+| Delegate a whole backend feature (API + data + tests) | `backend-builder` agent ² |
+| Write automated tests from a story's acceptance criteria | `test-engineer` agent ² |
 | Review code for quality and issues | `/code-review` |
 | Check a story's implementation against its acceptance criteria | `qa-reviewer` agent ² |
+| Run a security pass before a release | `security-reviewer` agent ² |
 | Check the code still matches documents/ (scope, ADRs, imports) | `spec-compliance` agent ² |
+| Set up or speed up CI/CD; scaffold infrastructure-as-code | `devops-engineer` agent ² |
+| Update the progress log / get a status report | `progress-tracker` agent ² |
 | Write automated tests | `/webapp-testing` ¹ |
 | Build a new MCP server tool | `/mcp-builder` ¹ |
 | Simplify or refactor complex code | `/simplify` ¹ |

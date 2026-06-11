@@ -12,7 +12,7 @@ A complete Claude Code plugin for software product development teams. Install on
 | [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
 | [`skills/`](skills/) | All 13 bundled skills (loaded automatically via the plugin) |
-| [`agents/`](agents/) | 3 bundled subagents: `qa-reviewer`, `spec-compliance`, `frontend-builder` |
+| [`agents/`](agents/) | 8 bundled subagents — reviewers (qa, spec, security), builders (frontend, backend, devops), test-engineer, progress-tracker |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
 
 ---
@@ -145,7 +145,12 @@ Separate agents with their own context and tool permissions — ask Claude to us
 |---|---|---|
 | `qa-reviewer` | Review implemented code against acceptance criteria + conventions | Read-only |
 | `spec-compliance` | Detect drift between `documents/` (spec) and `platform/` (code) | Read-only |
+| `security-reviewer` | OWASP/threat pass against the product's stated security model | Read-only |
 | `frontend-builder` | Build a complete, polished UI feature from a spec or design | Full |
+| `backend-builder` | Build a complete backend feature per ADRs + platform-layout | Full |
+| `test-engineer` | Write + run tests derived from acceptance criteria | Test files only |
+| `progress-tracker` | Progress-log upkeep + status reports (PM tracking) | `documents/operations/` |
+| `devops-engineer` | CI/CD pipelines + IaC scaffolding (plan/synth only) | Ops/infra paths |
 
 ### From the Anthropic Skills Library
 

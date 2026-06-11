@@ -8,6 +8,25 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.8.0] — 2026-06-10
+
+### Added
+- `agents/` grows from 3 to 8 subagents:
+  - `security-reviewer` — read-only OWASP Top-10 + threat pass over `platform/`, checked against the product's stated security model (`architecture/security.md`, Accepted ADRs); severity-ranked findings with exploit paths
+  - `backend-builder` — full-tools counterpart to `frontend-builder`: complete backend features (API, data model, authz, reversible migrations, tests) honoring Accepted ADRs and platform-layout placement
+  - `test-engineer` — derives automated tests from acceptance criteria, runs them, reports criteria coverage; never modifies production code (a failing test that catches a real bug is reported, not "fixed")
+  - `progress-tracker` — the PM-tracking function: SYNC-LITE bookkeeping (progress log, open-questions strikes) after work lands + on-demand status reports vs roadmap milestones; writes only under `documents/operations/`
+  - `devops-engineer` — fast, cached CI/CD pipelines and IaC scaffolding per `architecture/infrastructure.md` / the applied archetype; plan/synth only, never applies to live environments
+
+### Changed
+- `docs/04-agents-guide.md` — roster table covers all 8 agents; new "Roles that deliberately stay skills" note (stakeholder/product-owner, solutions architect, release manager — and why)
+- `skills/product-init/reference/playbook.md` — Build/Review/Ship stages and quick lookup include the new agents
+- `README.md` — repo table and Bundled Subagents table updated to 8
+- `.claude-plugin/plugin.json` + `marketplace.json` — version 1.8.0; description "3 subagents" → "8 subagents"
+- Backlog note: the planned `skills/devops` persona skill is superseded by the `devops-engineer` agent
+
+---
+
 ## [1.7.0] — 2026-06-10
 
 ### Added

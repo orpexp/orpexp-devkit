@@ -25,7 +25,7 @@ A complete Claude Code plugin for software product development teams. Install on
 ```bash
 gh auth login                                          # one-time — this repo is private; grant orpexp org access
 claude plugin marketplace add orpexp/orpexp-devkit     # one-time — register the plugin source
-claude plugin install orpexp-devkit                    # loads all 14 skills + 8 agents
+claude plugin install orpexp-devkit@orpexp             # loads all 14 skills + 8 agents + guardrail hook
 ```
 
 Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/02-install-and-maintenance.md).
@@ -234,17 +234,19 @@ Workspace guides (live in the `product-init` skill and are **copied into every g
 This repository is the single source of truth for your team's Claude Code configuration. The plugin installs from GitHub — no file copying needed.
 
 **Keeping up to date:**
-When a new version is pushed, teammates run one command inside Claude Code:
+When a new version is pushed, teammates run:
+```bash
+claude plugin marketplace update orpexp          # refresh marketplace metadata (cached)
+claude plugin update orpexp-devkit@orpexp        # use the fully-qualified name
 ```
-claude plugin update orpexp-devkit
-```
-Changes take effect immediately — no restart needed.
+Then restart Claude Code to apply. Note: the bare name (`claude plugin update orpexp-devkit`)
+can return "plugin not found" — always use `orpexp-devkit@orpexp`.
 
 **Adding a new skill for your team:**
 1. Create `skills/my-skill/SKILL.md` following the pattern in existing skills
 2. Run `/skill-creator` inside Claude Code for guided skill authoring
 3. Bump the version in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
-4. Commit and push — teammates pick it up with `claude plugin update orpexp-devkit`
+4. Commit and push — teammates pick it up with the update sequence above (full release checklist: [Install & Maintenance](docs/02-install-and-maintenance.md))
 
 **Project-level customization:**
 Each project's `CLAUDE.md` at the project root is auto-loaded by Claude Code. Keep all substantive guidance in `.ai/AGENTS.md` and pull it in via `@.ai/AGENTS.md` inside the root `CLAUDE.md` — that is how `.ai/` content reaches Claude.

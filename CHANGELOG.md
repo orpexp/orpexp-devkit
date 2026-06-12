@@ -8,6 +8,17 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.11.2] — 2026-06-11
+
+### Fixed
+- Install/update instructions corrected after a real-world failure (`Plugin "orpexp-devkit" not found`):
+  - All commands now use the fully-qualified name `orpexp-devkit@orpexp` (the bare name can fail to resolve)
+  - Update sequence now includes `claude plugin marketplace update orpexp` first (marketplace metadata is cached) and a restart note
+  - Release process in `docs/02-install-and-maintenance.md` gains steps 4–5: **push** (the plugin sources from GitHub `main` — unpushed releases reach no one) and **verify** by running the team update sequence; plus the hooks.json auto-discovery gotcha
+  - Applied across `README.md` (Quick Start, For Teams) and `docs/02-install-and-maintenance.md` (release process, install, plugin management, syncing, factory reset, onboarding script)
+
+---
+
 ## [1.11.1] — 2026-06-11
 
 ### Fixed

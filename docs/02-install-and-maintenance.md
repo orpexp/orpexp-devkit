@@ -6,12 +6,20 @@ Team onboarding, global config sync, release process, and factory reset for the 
 
 ## Release process (maintainers only)
 
-Before every push with user-facing changes:
+For every release with user-facing changes:
 1. Bump `"version"` in `.claude-plugin/plugin.json`
 2. Bump `"version"` (and `"description"` if the skill/agent count changed) in `.claude-plugin/marketplace.json`
 3. Add a `## [x.y.z] — YYYY-MM-DD` entry to `CHANGELOG.md`
+4. Commit and **push** — the plugin sources from GitHub `main`, so unpushed releases reach no one (including your own machine)
+5. Verify by running the team update sequence yourself:
+   ```bash
+   claude plugin marketplace update orpexp
+   claude plugin update orpexp-devkit@orpexp
+   claude plugin list        # must show the new version, Status: ✔ enabled
+   ```
 
-Teammates then pick it up with `claude plugin update orpexp-devkit` inside Claude Code.
+Gotcha: never add a `"hooks"` entry in `plugin.json` pointing at `hooks/hooks.json` — that path is
+auto-discovered, and declaring it double-registers the hooks and the plugin fails to load.
 
 ---
 
@@ -52,8 +60,8 @@ Install **orpexp-devkit** as a Claude Code plugin — all 14 skills, 8 subagents
 # Add the orpexp marketplace (one-time)
 claude plugin marketplace add orpexp/orpexp-devkit
 
-# Install the plugin
-claude plugin install orpexp-devkit
+# Install the plugin (fully-qualified name: plugin@marketplace)
+claude plugin install orpexp-devkit@orpexp
 ```
 
 Verify:
@@ -77,11 +85,15 @@ cp -r ~/orpexp-devkit/skills/* ~/.claude/skills/
 ## Plugin management
 
 ```bash
-claude plugin update orpexp-devkit       # update to the latest version
-claude plugin uninstall orpexp-devkit    # remove
-claude plugin list                       # list installed plugins
-claude plugin marketplace list           # list configured marketplaces
+claude plugin marketplace update orpexp           # refresh marketplace metadata (do this first — it's cached)
+claude plugin update orpexp-devkit@orpexp         # update to the latest version
+claude plugin uninstall orpexp-devkit@orpexp      # remove
+claude plugin list                                # list installed plugins + load status
+claude plugin marketplace list                    # list configured marketplaces
 ```
+
+> Use the fully-qualified name `orpexp-devkit@orpexp` — the bare name can return "plugin not found".
+> After an update, restart Claude Code to apply.
 
 ---
 
@@ -154,7 +166,8 @@ inside it — it adds `.ai/` and `documents/` without touching existing files.
 ## Syncing updates from the framework repo
 
 ```bash
-claude plugin update orpexp-devkit
+claude plugin marketplace update orpexp
+claude plugin update orpexp-devkit@orpexp
 
 # If you keep a clone (for global config or contributing):
 git -C ~/orpexp-devkit pull
@@ -194,7 +207,7 @@ rm -rf ~/.claude/skills/old-skill-name
 
 # Reinstall the plugin
 claude plugin marketplace add orpexp/orpexp-devkit
-claude plugin install orpexp-devkit
+claude plugin install orpexp-devkit@orpexp
 ```
 
 ### Full reset (nuclear option)
@@ -206,7 +219,7 @@ cp -r ~/.claude ~/.claude.backup.$(date +%Y%m%d)
 rm -rf ~/.claude
 
 claude plugin marketplace add orpexp/orpexp-devkit
-claude plugin install orpexp-devkit
+claude plugin install orpexp-devkit@orpexp
 cp ~/orpexp-devkit/global/settings.json ~/.claude/settings.json
 cp ~/orpexp-devkit/global/CLAUDE.md ~/.claude/CLAUDE.md
 ```
@@ -235,7 +248,7 @@ echo "Adding orpexp marketplace..."
 claude plugin marketplace add orpexp/orpexp-devkit
 
 echo "Installing orpexp-devkit plugin..."
-claude plugin install orpexp-devkit
+claude plugin install orpexp-devkit@orpexp
 
 # Optional: clone for global config and contributing
 # git clone git@github.com:orpexp/orpexp-devkit.git ~/orpexp-devkit

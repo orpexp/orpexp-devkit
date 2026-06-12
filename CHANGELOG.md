@@ -8,6 +8,13 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.11.1] — 2026-06-11
+
+### Fixed
+- Plugin failed to load in 1.11.0: `hooks/hooks.json` is auto-discovered by Claude Code, so the explicit `"hooks"` entry in `plugin.json` double-registered it ("Duplicate hooks file detected"). Removed the manifest entry — the standard `hooks/hooks.json` location loads automatically
+
+---
+
 ## [1.11.0] — 2026-06-11
 
 ### Added

@@ -53,8 +53,8 @@ gh repo view orpexp/orpexp-devkit --json visibility --jq '.visibility'
 
 ## 1. Install the plugin
 
-Install **orpexp-devkit** as a Claude Code plugin — all 14 skills, 8 subagents, and the
-`documents/inputs/` guardrail hook load automatically:
+Install **orpexp-devkit** as a Claude Code plugin — all 15 skills, 8 subagents, and both
+hooks (the `documents/inputs/` guardrail and the graph-first nudge) load automatically:
 
 ```bash
 # Add the orpexp marketplace (one-time)
@@ -72,6 +72,33 @@ claude plugin list
 ```
 
 Open Claude Code and run `/help` — you should see all skills listed.
+
+### 1b. Install the Graphify CLI (recommended — token-efficient repo search)
+
+The plugin ships a **graph-first hook** that, in any repo with a committed knowledge graph,
+nudges agents to query the graph instead of grepping/reading files — a large token saving. The
+hook needs the [Graphify](https://github.com/Graphify-Labs/graphify) CLI on your machine
+(one-time, needs Python 3.10+ — no API key ever):
+
+```bash
+uv tool install graphifyy        # package is graphifyy (double y), command is graphify
+graphify install                 # register the /graphify skill with Claude Code
+```
+
+No `uv`? Run `brew install uv` first (or `pipx install graphifyy`). If `graphify` isn't found
+afterwards: `uv tool update-shell`, then open a new terminal.
+
+The graph lives at **`.ai/graph/`** (agent tooling — kept out of the repo root). Its location is
+set by `GRAPHIFY_OUT` in the project's `.claude/settings.json`, which `/product-init` pre-wires
+into every new project (`{ "env": { "GRAPHIFY_OUT": ".ai/graph" } }`); Graphify's CLI and the
+plugin hook both honor it, so they always agree on where the graph is.
+
+That's all: repos that already have a committed `.ai/graph/` (this framework repo does) work
+immediately. To build a graph for a new repo, or to **turn the nudge off** when an agent needs
+full context (`touch .graphify-off`), see the `/repo-graph` skill.
+
+> Do **not** run `graphify claude install` — the plugin already ships that hook; running it would
+> register a duplicate nudge.
 
 **Manual install (fallback — for IDE extensions or if the plugin command is unavailable):**
 

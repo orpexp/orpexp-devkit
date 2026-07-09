@@ -1,6 +1,6 @@
 # Claude Code Framework
 
-A complete Claude Code plugin for software product development teams. Install once and get 14 skills, 8 subagents, workflow guides, and a docs-first project scaffolder for every stage of your product lifecycle.
+A complete Claude Code plugin for software product development teams. Install once and get 15 skills, 8 subagents, workflow guides, a docs-first project scaffolder, and token-efficient repo search (Graphify knowledge graph) for every stage of your product lifecycle.
 
 ---
 
@@ -11,10 +11,11 @@ A complete Claude Code plugin for software product development teams. Install on
 | [`CHANGELOG.md`](CHANGELOG.md) | Version history and release notes |
 | [`docs/`](docs/) | Guides: Claude Code reference, workflow, agents, install & maintenance |
 | [`.claude-plugin/`](.claude-plugin/) | Plugin manifest — enables `claude plugin install` |
-| [`skills/`](skills/) | All 14 bundled skills (loaded automatically via the plugin) |
+| [`skills/`](skills/) | All 15 bundled skills (loaded automatically via the plugin) |
 | [`agents/`](agents/) | 8 bundled subagents — reviewers (qa, spec, security), builders (frontend, backend, devops), test-engineer, progress-tracker |
-| [`hooks/`](hooks/) | Guardrail hook: blocks agent writes under `documents/inputs/` (stakeholder-only) |
+| [`hooks/`](hooks/) | Guardrail hook (blocks agent writes under `documents/inputs/`) + graph-first hook (nudges agents to query the Graphify knowledge graph instead of grepping) |
 | [`global/`](global/) | Optional user-level config: `CLAUDE.md`, `settings.json` |
+| [`.ai/graph/`](.ai/graph/) | This repo's own committed knowledge graph — agents query it instead of reading all files (kept in `.ai/`, not the root) |
 
 ---
 
@@ -25,7 +26,7 @@ A complete Claude Code plugin for software product development teams. Install on
 ```bash
 gh auth login                                          # one-time — this repo is private; grant orpexp org access
 claude plugin marketplace add orpexp/orpexp-devkit     # one-time — register the plugin source
-claude plugin install orpexp-devkit@orpexp             # loads all 14 skills + 8 agents + guardrail hook
+claude plugin install orpexp-devkit@orpexp             # loads all 15 skills + 8 agents + hooks
 ```
 
 Verify: open Claude Code and run `/help` — all skills should appear. Full details (prerequisites, fallbacks, team onboarding): [Install & Maintenance](docs/02-install-and-maintenance.md).
@@ -40,7 +41,23 @@ Open Claude Code and run:
 
 Installs Anthropic's 5 official skills (`frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator`, `simplify`). No repo clone needed.
 
-### 3. Start a new project
+### 3. Install the Graphify CLI (recommended — saves tokens)
+
+```bash
+uv tool install graphifyy        # package is graphifyy (double y), command is graphify
+graphify install                 # register the /graphify skill with Claude Code
+```
+
+[Graphify](https://github.com/Graphify-Labs/graphify) turns a repo into a queryable **knowledge
+graph** so agents answer "what connects X to Y?" with one scoped query instead of reading dozens
+of files. The graph lives at **`.ai/graph/`** (agent tooling — kept out of the repo root; set via
+`GRAPHIFY_OUT` in `.claude/settings.json`, which `/product-init` pre-wires into every new project).
+The plugin's **graph-first hook** nudges agents toward the graph automatically in any repo that
+has one — including this framework repo, whose graph is committed. Build a graph for your own repo
+with `/repo-graph`; silence the nudge whenever full context is needed with `touch .graphify-off`
+(delete to re-enable). Do **not** run `graphify claude install` — the plugin already ships that hook.
+
+### 4. Start a new project
 
 ```bash
 mkdir my-product && cd my-product
@@ -56,7 +73,7 @@ Inside Claude Code, drop your idea notes into the conversation and run:
 
 This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `platform/`) and extracts your notes into structured knowledge-base documents. No template to copy — the skill builds everything. No stack decisions yet — that comes via `/architect`.
 
-### 4. Work the stages
+### 5. Work the stages
 
 ```
 /product-owner   "Refine requirements and resolve open questions"
@@ -67,7 +84,7 @@ This generates the full project structure (`CLAUDE.md`, `.ai/`, `documents/`, `p
 Then delegate: `backend-builder` implements the API, `devops-engineer` sets up CI/CD,
 `frontend-builder` drafts the UI against the real API and later upgrades it to the formal design.
 
-### 5. Review & Ship
+### 6. Review & Ship
 
 ```
 test-engineer / qa-reviewer / security-reviewer / spec-compliance   (agents — tests + checks)
@@ -142,6 +159,7 @@ inside every workspace at `.ai/guides/product-workflow.md`, so your teammates al
 | Build Plan | `/build-plan` | Generate a sequenced implementation plan |
 | Setup Skills | `/setup-skills` | Install Anthropic's 5 official external skills |
 | Skill Creator | `/skill-creator` | Create new skills for this framework |
+| Repo Graph | `/repo-graph` | Set up Graphify: a repo knowledge graph agents query instead of grepping (token saver) |
 
 ### Bundled Subagents
 

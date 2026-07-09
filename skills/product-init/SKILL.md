@@ -344,12 +344,17 @@ The full stage-by-stage guide (with the backend-first rationale) ships in every 
 {{PRODUCT_SLUG}}/
 ├── CLAUDE.md                               ← @.ai/AGENTS.md (3 lines)
 ├── README.md                               ← human entry point
+├── .claude/
+│   └── settings.json                       ← { "env": { "GRAPHIFY_OUT": ".ai/graph" } } (see below)
+├── .gitignore                              ← incl. .ai/graph/cost.json, .ai/graph/cache/
+├── .claudeignore                           ← incl. .ai/graph/ (keeps the graph out of the prompt cache)
 ├── .ai/
 │   ├── AGENTS.md                           ← canonical agent context
 │   ├── conventions.md                      ← the docs-system rules
 │   ├── platform-layout.md                 ← the platform/ code layout
 │   ├── playbook.md                         ← skills + workflow quick-reference
-│   └── guides/                             ← claude-code-guide.md + product-workflow.md
+│   ├── guides/                             ← claude-code-guide.md + product-workflow.md
+│   └── graph/                              ← Graphify knowledge graph (created by /repo-graph, not here)
 ├── documents/
 │   ├── README.md                           ← index/manifest + routing table
 │   ├── inputs/
@@ -365,11 +370,29 @@ The full stage-by-stage guide (with the backend-first rationale) ships in every 
 
 ---
 
+## Graphify wiring (pre-wire the graph location)
+
+Write these three small files so every project points Graphify at `.ai/graph/` from day one
+(keeps the repo root clean; the `/repo-graph` skill later builds the graph into this path):
+
+- `.claude/settings.json` → `{ "env": { "GRAPHIFY_OUT": ".ai/graph" } }`. **Merge** into an
+  existing file rather than clobbering it (preserve any `permissions`/other keys).
+- `.gitignore` → ensure it contains `.ai/graph/cost.json` and `.ai/graph/cache/` (the graph
+  itself — `graph.json`, `GRAPH_REPORT.md`, `graph.html` — is committed).
+- `.claudeignore` → ensure it contains `.ai/graph/` (keeps the large graph out of the prompt cache;
+  the rest of `.ai/` stays readable).
+
+Do **not** build the graph or install the Graphify CLI here — that is `/repo-graph`'s job. This
+step only reserves the location. A fresh project stays clean and the graph-first hook stays silent
+until a graph exists.
+
 ## Guardrails
 
 - This skill **writes documentation, not application code**. Do not scaffold `package.json`,
   source files, or any code — that happens after the stack is decided, via `/build-plan` and the
-  dev agents.
+  dev agents. **Sanctioned exception:** the three Graphify-wiring files above
+  (`.claude/settings.json` env, `.gitignore`, `.claudeignore`) — agent-workspace config, not
+  application code.
 - Don't overwrite an existing `documents/inputs/STAKEHOLDER-NOTES.md` in INIT mode — if one
   exists, you're in SYNC.
 - **Never edit anything under `documents/inputs/`** — it is the stakeholder's read-only territory.

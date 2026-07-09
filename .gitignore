@@ -1,1 +1,5 @@
 claude-framework-dev-log.txt
+
+# Graphify — commit the graph, not local run artifacts (see /repo-graph skill)
+.ai/graph/cost.json
+.ai/graph/cache/

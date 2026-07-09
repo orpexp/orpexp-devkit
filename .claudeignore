@@ -1,0 +1,4 @@
+# Graphify writes here on every rebuild; ignoring it keeps Claude Code's prompt
+# cache valid (see skills/repo-graph/SKILL.md). Query the graph via the CLI instead:
+#   graphify query "<question>"
+.ai/graph/

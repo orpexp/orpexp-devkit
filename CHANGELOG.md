@@ -8,6 +8,22 @@ All notable changes to **orpexp-devkit** are recorded here. Newest first.
 
 ---
 
+## [1.12.0] — 2026-07-12
+
+### Added
+- **Graphify integration — token-efficient repo search** ([Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify), MIT). Graphify AST-parses a repo locally (no LLM calls, no API key) into a queryable knowledge graph; agents answer architecture/relationship questions with one scoped `graphify query` instead of grepping and reading files one by one
+  - **Graph location: `.ai/graph/`** — kept inside the agent-context folder, out of the repo root (honors the "root stays clean" rule). Set via the `GRAPHIFY_OUT` env var, which Graphify honors for every command (build/query/path/explain/report) and the plugin hook honors for detection, so CLI and hook always agree on where the graph is. Propagated through the project's `.claude/settings.json` `env` block (`{ "env": { "GRAPHIFY_OUT": ".ai/graph" } }`), which Claude Code injects into Bash tool calls and hook execution
+  - `skills/repo-graph/` — 15th skill: install the CLI (`uv tool install graphifyy` + `graphify install`), point the project at `.ai/graph/` via `.claude/settings.json`, build the graph, place outputs (`.ai/graph/` committed; `cost.json`/`cache/` gitignored; `.ai/graph/` claudeignored for prompt-cache health), query patterns, freshness, and all kill switches
+  - `hooks/graph-first.sh` — **graph-first nudge hook** (PreToolUse on `Bash` and `Read|Glob|Grep`): in any repo with a built graph, delegates to `graphify hook-guard` to nudge agents toward the graph before search/read calls. Reads `${GRAPHIFY_OUT:-graphify-out}` so it follows the configured location. Always fails open — never blocks a tool call, silent when the CLI or graph is absent. **Toggleable**: `touch .graphify-off` (per repo) or `GRAPHIFY_HOOK_OFF=1` (per session) when full-context reading is needed. Teammates must NOT also run `graphify claude install` (would duplicate the nudge)
+  - `.ai/graph/` + `.claude/settings.json` — this framework repo now ships its own committed knowledge graph (at `.ai/graph/`, not the root) plus the `GRAPHIFY_OUT` env wiring, so agents working on the framework query it instead of reading all files
+  - `product-init` — pre-wires `GRAPHIFY_OUT=.ai/graph` (via `.claude/settings.json`) and the `.gitignore`/`.claudeignore` entries into every new project, and documents `.ai/graph/` in the `.ai/` conventions tree, so no scaffolded project ever puts `graphify-out/` in its root
+
+### Changed
+- `plugin.json` + `marketplace.json` — version 1.12.0; description now "15 skills … and a Graphify graph-first hook"
+- Rosters + install docs updated: `README.md` (Quick Start step 3: Graphify CLI, repo table, skills table), `docs/01-skills-and-agents.md` (15 skills), `docs/02-install-and-maintenance.md` (§1b Graphify CLI install for teammates)
+
+---
+
 ## [1.11.2] — 2026-06-11
 
 ### Fixed

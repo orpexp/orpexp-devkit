@@ -29,7 +29,7 @@ delegate to an agent.
 
 ---
 
-## The 14 skills
+## The 15 skills
 
 | Skill | Stage | One-liner |
 |---|---|---|
@@ -47,6 +47,7 @@ delegate to an agent.
 | `/scrum-master` | Ship | Sprint planning, retrospectives, release notes, post-mortems |
 | `/setup-skills` | Meta | Install Anthropic's 5 external skills (`frontend-design`, `webapp-testing`, `mcp-builder`, `skill-creator`, `simplify`) |
 | `/skill-creator` | Meta | Create a new skill for this framework |
+| `/repo-graph` | Meta | Set up [Graphify](https://github.com/Graphify-Labs/graphify): a knowledge graph agents query instead of grepping — saves tokens |
 
 Each skill's `SKILL.md` carries its full perspective, workflows, output templates, and guardrails —
 that's the source of truth, not this table.

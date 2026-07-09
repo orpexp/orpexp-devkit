@@ -43,7 +43,10 @@ deep nesting.
 .ai/                                # how to work in this repo (for any agent or human director)
 ├── AGENTS.md                       #   ⭐ canonical agent context: behavioral rules + reading order
 ├── conventions.md                  #   this file — the docs system
-└── platform-layout.md             #   the platform/ code layout + where new code goes
+├── platform-layout.md             #   the platform/ code layout + where new code goes
+└── graph/                          #   Graphify knowledge graph (agent tooling — query it, don't grep;
+                                    #   built by /repo-graph, path set by GRAPHIFY_OUT; graph.json + report
+                                    #   + html committed, cost.json + cache/ git-ignored)
 
 documents/                          # the knowledge base CONTENT
 ├── README.md                       # INDEX — read first; maps every doc + "I need X → read Y" table
